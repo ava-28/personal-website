@@ -6,6 +6,9 @@ export const metadata = {
   title: "Ava Ahmadi | Mathematics Student at UBC | AI Research",
   description:
     "Ava Ahmadi is a Mathematics undergraduate at the University of British Columbia working on NLP, Transformer-based Retrieval Systems, Reinforcement Learning, and Responsible AI.",
+  verification: {
+    google: "rX6bvGcU7DdSXfpYBVL6oIZwbAEsNC1uL3XxKj1DiGY",
+  },
 };
 
 export default function RootLayout({
