@@ -1,0 +1,85 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { Card } from '@/components/Card'
+import { DecorativeShapes } from '@/components/DecorativeShapes'
+
+const leadership = {
+  title: 'Founder & President',
+  organization: 'Association for Women in Mathematics (AWM) @ UBC',
+  period: 'Jan 2026 – Present',
+  overview:
+    'I founded and currently lead the undergraduate chapter of the Association for Women in Mathematics at the University of British Columbia with the goal of strengthening engagement, mentorship, and retention within the mathematics community.',
+  focus:
+    'This initiative focuses on building accessible academic and professional support structures for undergraduate students pursuing mathematically intensive disciplines.',
+  initiatives: [
+    'Designed and deployed a data-driven membership intake system to assess student interest, role allocation, and participation patterns',
+    'Structured an operational framework defining executive roles across events, finance, outreach, and technology to ensure scalable organizational growth',
+    'Collaborate with faculty members and the Departmental Equity Committee to align programming with broader educational and inclusion initiatives',
+    'Coordinate technical workshops, mentorship programs, and academic panels aimed at supporting students pursuing research and graduate studies',
+  ],
+  reflection:
+    'Through this work, I am particularly interested in understanding how institutional and community-level infrastructure can influence participation, persistence, and success in mathematically intensive fields.',
+}
+
+export default function LeadershipPage() {
+  return (
+    <div className="relative overflow-hidden">
+      <DecorativeShapes />
+      <div className="relative z-10 mx-auto max-w-3xl px-6 py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <h1 className="font-serif text-3xl font-semibold text-stone-900 md:text-4xl dark:text-stone-100">
+            Leadership
+          </h1>
+          <p className="mt-2 text-stone-600 dark:text-stone-400">
+            Community and organizational roles
+          </p>
+        </motion.div>
+
+        <Card>
+          <div className="space-y-5">
+            <div>
+              <h2 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100">
+                {leadership.title}
+              </h2>
+              <p className="mt-1 text-accent-600">{leadership.organization}</p>
+              <p className="text-sm text-stone-600 dark:text-stone-400">
+                {leadership.period}
+              </p>
+            </div>
+            <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+              {leadership.overview}
+            </p>
+            <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+              {leadership.focus}
+            </p>
+            <div>
+              <p className="mb-3 text-sm font-medium text-stone-800 dark:text-stone-200">
+                As part of this effort, I:
+              </p>
+              <ul className="space-y-2">
+                {leadership.initiatives.map((initiative) => (
+                  <li
+                    key={initiative}
+                    className="flex items-start gap-2 text-stone-700 dark:text-stone-300"
+                  >
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-300" />
+                    <span className="text-sm leading-relaxed">{initiative}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+              {leadership.reflection}
+            </p>
+          </div>
+        </Card>
+      </div>
+    </div>
+  )
+}
