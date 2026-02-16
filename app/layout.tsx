@@ -1,12 +1,12 @@
-import type { Metadata } from 'next'
 import './globals.css'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
 
-export const metadata: Metadata = {
-  title: 'Ava Ahmadi | Mathematics & AI Research',
-  description: 'Undergraduate Mathematics student at UBC working at the intersection of NLP, Transformer models, and mathematical optimization.',
-}
+export const metadata = {
+  title: "Ava Ahmadi | Mathematics Student at UBC | AI Research",
+  description:
+    "Ava Ahmadi is a Mathematics undergraduate at the University of British Columbia working on NLP, Transformer-based Retrieval Systems, Reinforcement Learning, and Responsible AI.",
+};
 
 export default function RootLayout({
   children,
