@@ -2,10 +2,74 @@
 
 import { motion } from 'framer-motion'
 
-export type ProjectVisualKind = 'gridworld' | 'hydro' | 'transformer'
+export type ProjectVisualKind =
+  | 'montecarlo'
+  | 'gridworld'
+  | 'hydro'
+  | 'transformer'
 
 interface ProjectVisualProps {
   kind: ProjectVisualKind
+}
+
+function MonteCarloVisual() {
+  return (
+    <svg viewBox="0 0 600 280" className="h-full w-full">
+      <rect x="0" y="0" width="600" height="280" fill="#f8fafc" />
+      <rect x="48" y="36" width="356" height="200" rx="10" fill="#ffffff" />
+      <g stroke="#cbd5e1" strokeWidth="1.5">
+        <line x1="82" y1="58" x2="82" y2="214" />
+        <line x1="140" y1="58" x2="140" y2="214" />
+        <line x1="198" y1="58" x2="198" y2="214" />
+        <line x1="256" y1="58" x2="256" y2="214" />
+        <line x1="314" y1="58" x2="314" y2="214" />
+        <line x1="372" y1="58" x2="372" y2="214" />
+        <line x1="60" y1="76" x2="386" y2="76" />
+        <line x1="60" y1="114" x2="386" y2="114" />
+        <line x1="60" y1="152" x2="386" y2="152" />
+        <line x1="60" y1="190" x2="386" y2="190" />
+      </g>
+      <path
+        d="M60 192 C95 175, 120 144, 148 157 C175 169, 205 122, 238 136 C268 147, 302 96, 334 109 C357 119, 372 86, 386 78"
+        stroke="#2563eb"
+        strokeWidth="4"
+        fill="none"
+      />
+      <path
+        d="M60 198 C95 171, 126 180, 150 145 C181 103, 210 137, 241 115 C274 93, 304 122, 332 97 C356 76, 372 82, 386 72"
+        stroke="#7c3aed"
+        strokeWidth="3"
+        fill="none"
+        opacity="0.85"
+      />
+      <path
+        d="M60 203 C88 200, 122 162, 150 171 C181 182, 206 141, 238 149 C268 157, 304 113, 333 122 C359 130, 373 110, 386 96"
+        stroke="#0ea5e9"
+        strokeWidth="3"
+        fill="none"
+        opacity="0.78"
+      />
+      <rect x="436" y="58" width="122" height="152" rx="12" fill="#e2e8f0" />
+      <text x="448" y="88" fill="#1e293b" fontSize="15" fontFamily="Georgia, serif">
+        Monte Carlo
+      </text>
+      <text x="448" y="114" fill="#334155" fontSize="13">
+        GBM paths
+      </text>
+      <text x="448" y="136" fill="#334155" fontSize="13">
+        Option pricing
+      </text>
+      <text x="448" y="158" fill="#334155" fontSize="13">
+        Risk-neutral
+      </text>
+      <circle cx="470" cy="184" r="9" fill="#7c3aed" />
+      <circle cx="500" cy="184" r="9" fill="#2563eb" />
+      <circle cx="530" cy="184" r="9" fill="#0ea5e9" />
+      <text x="58" y="252" fill="#334155" fontSize="16">
+        Financial derivatives pricing under uncertainty
+      </text>
+    </svg>
+  )
 }
 
 function GridworldVisual() {
@@ -93,6 +157,7 @@ export function ProjectVisual({ kind }: ProjectVisualProps) {
       transition={{ duration: 0.2 }}
     >
       <div className="h-44 w-full">
+        {kind === 'montecarlo' && <MonteCarloVisual />}
         {kind === 'gridworld' && <GridworldVisual />}
         {kind === 'hydro' && <HydroVisual />}
         {kind === 'transformer' && <TransformerVisual />}

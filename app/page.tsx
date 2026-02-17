@@ -4,14 +4,6 @@ import { motion } from 'framer-motion'
 import { DecorativeShapes } from '@/components/DecorativeShapes'
 import { Section } from '@/components/Section'
 
-const researchAreas = [
-  'Natural Language Processing',
-  'Transformer-based Retrieval Systems',
-  'Multilingual Representation Learning',
-  'Reinforcement Learning',
-  'Mathematical Optimization',
-]
-
 const enjoyItems = [
   'Watching stars and reading about them',
   'Mathematical modeling of real-world systems',
@@ -36,6 +28,14 @@ const education = [
   },
 ]
 
+const aboutParagraphs = [
+  "I'm an undergraduate Mathematics student at the University of British Columbia with a strong interest in how modern AI systems learn, represent, and reason with information.",
+  "My work sits at the intersection of natural language processing, transformer-based retrieval models, multilingual representation learning, reinforcement learning, and mathematical optimization. I'm particularly interested in understanding how large-scale AI models develop meaningful representations across languages, and how these systems can be designed to scale efficiently in high-performance computing environments.",
+  "Alongside my work in AI, I'm deeply interested in reinforcement learning and its applications in finance, especially in the design and analysis of data-driven financial models and decision-making systems under uncertainty.",
+  "Beyond machine learning, I've always been fascinated by astrophysics and the mathematical structure of the universe. I previously participated in the National Astrophysics Olympiad, which sparked my ongoing interest in studying stars and complex physical systems through a mathematical lens.",
+  'Through my research, I explore both the theoretical foundations and practical implementations of machine learning models, from studying their mathematical behavior to working with large-scale training and retrieval systems on HPC clusters.',
+]
+
 export default function HomePage() {
   return (
     <div className="relative overflow-hidden">
@@ -45,8 +45,14 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="relative mb-20"
         >
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute -left-10 -top-8 h-28 w-28 rounded-2xl bg-accent-300/45 blur-2xl dark:bg-accent-700/35"
+            animate={{ x: [0, 6, 0], y: [0, -6, 0] }}
+            transition={{ duration: 7.5, repeat: Infinity, ease: 'easeInOut' }}
+          />
           <h1 className="font-serif text-3xl font-semibold text-stone-900 md:text-4xl dark:text-stone-100">
             Ava Ahmadi
           </h1>
@@ -54,6 +60,26 @@ export default function HomePage() {
             BSc Mathematics · University of British Columbia
           </p>
         </motion.div>
+
+        <Section className="mb-20">
+          <h2 className="mb-6 font-serif text-xl font-semibold text-stone-900 dark:text-stone-100">
+            About
+          </h2>
+          <div className="space-y-4">
+            {aboutParagraphs.map((paragraph, i) => (
+              <motion.p
+                key={paragraph.slice(0, 40)}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="leading-relaxed text-stone-700 dark:text-stone-300"
+              >
+                {paragraph}
+              </motion.p>
+            ))}
+          </div>
+        </Section>
 
         <Section className="mb-20">
           <h2 className="mb-6 font-serif text-xl font-semibold text-stone-900 dark:text-stone-100">
@@ -78,36 +104,6 @@ export default function HomePage() {
               </motion.div>
             ))}
           </div>
-        </Section>
-
-        <Section className="mb-20">
-          <h2 className="mb-6 font-serif text-xl font-semibold text-stone-900 dark:text-stone-100">
-            About
-          </h2>
-          <p className="mb-6 leading-relaxed text-stone-700 dark:text-stone-300">
-            I am an undergraduate Mathematics student at the University of
-            British Columbia working at the intersection of:
-          </p>
-          <ul className="mb-6 space-y-2">
-            {researchAreas.map((area, i) => (
-              <motion.li
-                key={area}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="flex items-center gap-2 text-stone-700 dark:text-stone-300"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
-                {area}
-              </motion.li>
-            ))}
-          </ul>
-          <p className="leading-relaxed text-stone-700 dark:text-stone-300">
-            My work focuses on understanding how modern AI models learn
-            representations, reason across languages, and scale efficiently in
-            high-performance computing environments.
-          </p>
         </Section>
 
         <Section>

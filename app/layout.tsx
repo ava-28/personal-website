@@ -1,15 +1,16 @@
+import type { Metadata } from 'next'
 import './globals.css'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
 
-export const metadata = {
-  title: "Ava Ahmadi | Mathematics Student at UBC | AI Research",
+export const metadata: Metadata = {
+  title: 'Ava Ahmadi',
   description:
-    "Ava Ahmadi is a Mathematics undergraduate at the University of British Columbia working on NLP, Transformer-based Retrieval Systems, Reinforcement Learning, and Responsible AI.",
+    'Ava Ahmadi is a Mathematics undergraduate at the University of British Columbia working on NLP, Transformer-based Retrieval Systems, Reinforcement Learning, and Responsible AI.',
   verification: {
-    google: "rX6bvGcU7DdSXfpYBVL6oIZwbAEsNC1uL3XxKj1DiGY",
+    google: 'rX6bvGcU7DdSXfpYBVL6oIZwbAEsNC1uL3XxKj1DiGY',
   },
-};
+}
 
 export default function RootLayout({
   children,

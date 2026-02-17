@@ -15,6 +15,18 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: 'Monte Carlo Simulation for Financial Derivatives Pricing',
+    visual: 'montecarlo',
+    highlights: [
+      'Developed a Monte Carlo simulation framework in Python to model stochastic asset price dynamics under uncertainty',
+      'Implemented risk-neutral sampling techniques to estimate the fair value of financial derivatives',
+      'Simulated asset price paths using Geometric Brownian Motion to approximate expected option payoffs',
+      'Applied probabilistic modeling to evaluate pricing sensitivity across varying volatility and time-to-maturity parameters',
+      'Explored the role of randomness and statistical convergence in financial decision-making systems',
+      'Investigated connections between simulation-based pricing methods and reinforcement learning approaches to sequential decision-making under uncertainty',
+    ],
+  },
+  {
     title: 'Reinforcement Learning Agent – Gridworld (PyTorch)',
     visual: 'gridworld',
     highlights: [
