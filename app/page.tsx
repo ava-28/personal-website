@@ -1,6 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
 import { DecorativeShapes } from '@/components/DecorativeShapes'
 import { MathBackground } from '@/components/MathBackground'
 import { Section } from '@/components/Section'
@@ -15,25 +17,37 @@ const researchInterests = [
   'Quantitative finance',
 ]
 
-const personalInterests = [
-  { emoji: '🌌', text: 'Watching stars and reading about astrophysics' },
-  { emoji: '🎨', text: 'Oil painting' },
-  { emoji: '🧩', text: 'Solving puzzles' },
-  { emoji: '🏎️', text: 'Formula 1' },
-]
 
-const education = [
+const heroTags = [
   {
-    institution: 'University of British Columbia',
-    detail: 'BSc Mathematics · Expected 2027',
+    label: '🤖 ML Research',
+    href: '/research',
+    external: false,
+    color: 'bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-700/50',
   },
   {
-    institution: 'Farznegan High School (SAMPAD)',
-    detail: 'Secondary School Education',
+    label: '🎓 UBC Math · 2027',
+    href: '/projects',
+    external: false,
+    color: 'bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-700/50',
+  },
+  {
+    label: '🌸 AWM Founder',
+    href: 'https://awmubc.github.io',
+    external: true,
+    color: 'bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200 dark:bg-fuchsia-900/30 dark:text-fuchsia-300 dark:border-fuchsia-700/50',
+  },
+  {
+    label: '📐 Optimization · Stochastics · NLP',
+    href: '/research',
+    external: false,
+    color: 'bg-sky-100 text-sky-700 border-sky-200 dark:bg-sky-900/30 dark:text-sky-300 dark:border-sky-700/50',
   },
 ]
 
 export default function HomePage() {
+  const [sampadOpen, setSampadOpen] = useState(false)
+
   return (
     <div className="relative overflow-hidden">
       <MathBackground />
@@ -107,23 +121,28 @@ export default function HomePage() {
             transition={{ duration: 0.4, delay: 0.55 }}
             className="mt-5 flex flex-wrap gap-2"
           >
-            {[
-              { label: '🤖 ML Research', color: 'bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-700/50' },
-              { label: '🎓 UBC Math · 2027', color: 'bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-700/50' },
-              { label: '🌸 AWM Founder', color: 'bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200 dark:bg-fuchsia-900/30 dark:text-fuchsia-300 dark:border-fuchsia-700/50' },
-              { label: '📐 Optimization · Stochastics · NLP', color: 'bg-sky-100 text-sky-700 border-sky-200 dark:bg-sky-900/30 dark:text-sky-300 dark:border-sky-700/50' },
-            ].map((tag, i) => (
-              <motion.span
-                key={tag.label}
-                className={`rounded-full border px-3 py-1 text-xs font-medium ${tag.color}`}
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6 + i * 0.07, duration: 0.3 }}
-                whileHover={{ y: -2, transition: { duration: 0.15 } }}
-              >
-                {tag.label}
-              </motion.span>
-            ))}
+            {heroTags.map((tag, i) => {
+              const pill = (
+                <motion.span
+                  className={`inline-block rounded-full border px-3 py-1 text-xs font-medium cursor-pointer ${tag.color}`}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6 + i * 0.07, duration: 0.3 }}
+                  whileHover={{ y: -2, transition: { duration: 0.15 } }}
+                >
+                  {tag.label}
+                </motion.span>
+              )
+              return tag.external ? (
+                <a key={tag.label} href={tag.href} target="_blank" rel="noopener noreferrer">
+                  {pill}
+                </a>
+              ) : (
+                <Link key={tag.label} href={tag.href}>
+                  {pill}
+                </Link>
+              )
+            })}
           </motion.div>
 
           {/* CTA links */}
@@ -184,23 +203,93 @@ export default function HomePage() {
           <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
             🎓 Education
           </h2>
-          <div className="space-y-5">
-            {education.map((item, i) => (
-              <motion.div
-                key={item.institution}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+            {/* UBC */}
+            <motion.a
+              href="https://www.math.ubc.ca"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0 }}
+              whileHover={{ y: -2 }}
+              className="group block rounded-xl border border-stone-200 bg-white/60 p-5 transition-all hover:border-accent-300 hover:shadow-sm dark:border-slate-700 dark:bg-slate-800/60 dark:hover:border-accent-600"
+            >
+              <p className="font-medium text-stone-900 transition-colors group-hover:text-accent-600 dark:text-slate-100 dark:group-hover:text-accent-400">
+                University of British Columbia
+              </p>
+              <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">
+                BSc Mathematics · Expected 2027
+              </p>
+              <p className="mt-3 text-xs text-accent-500 opacity-0 transition-opacity group-hover:opacity-100 dark:text-accent-400">
+                math.ubc.ca →
+              </p>
+            </motion.a>
+
+            {/* SAMPAD */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.07 }}
+              className="relative"
+            >
+              <button
+                onClick={() => setSampadOpen((v) => !v)}
+                className="group w-full rounded-xl border border-stone-200 bg-white/60 p-5 text-left transition-all hover:border-accent-300 hover:shadow-sm dark:border-slate-700 dark:bg-slate-800/60 dark:hover:border-accent-600"
               >
-                <p className="font-medium text-stone-900 dark:text-slate-100">
-                  {item.institution}
+                <p className="font-medium text-stone-900 transition-colors group-hover:text-accent-600 dark:text-slate-100 dark:group-hover:text-accent-400">
+                  Farznegan High School (SAMPAD)
                 </p>
-                <p className="text-sm text-stone-500 dark:text-slate-400">
-                  {item.detail}
+                <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">
+                  Secondary School Education
                 </p>
-              </motion.div>
-            ))}
+                <p className="mt-3 text-xs text-accent-500 dark:text-accent-400">
+                  {sampadOpen ? 'Close ↑' : 'Learn more ↓'}
+                </p>
+              </button>
+
+              <AnimatePresence>
+                {sampadOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute left-0 right-0 top-full z-20 mt-1.5 overflow-hidden rounded-xl border border-stone-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900"
+                  >
+                    <a
+                      href="https://www.linkedin.com/school/iransampad/people/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-4 py-3.5 text-sm text-stone-700 transition-colors hover:bg-stone-50 dark:text-slate-300 dark:hover:bg-slate-800"
+                    >
+                      <span className="text-base">💼</span>
+                      <div>
+                        <p className="font-medium">LinkedIn Community</p>
+                        <p className="text-xs text-stone-400 dark:text-slate-500">SAMPAD alumni network</p>
+                      </div>
+                    </a>
+                    <div className="mx-4 h-px bg-stone-100 dark:bg-slate-700" />
+                    <a
+                      href="https://en.wikipedia.org/wiki/National_Organization_for_Development_of_Exceptional_Talents"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-4 py-3.5 text-sm text-stone-700 transition-colors hover:bg-stone-50 dark:text-slate-300 dark:hover:bg-slate-800"
+                    >
+                      <span className="text-base">📖</span>
+                      <div>
+                        <p className="font-medium">Wikipedia — NODET / SAMPAD</p>
+                        <p className="text-xs text-stone-400 dark:text-slate-500">National gifted education org</p>
+                      </div>
+                    </a>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
           </div>
         </Section>
 
@@ -230,21 +319,35 @@ export default function HomePage() {
           <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
             ✨ Outside of Research
           </h2>
-          <ul className="space-y-3">
-            {personalInterests.map((item, i) => (
-              <motion.li
-                key={item.text}
-                initial={{ opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="flex items-center gap-3 text-stone-600 dark:text-slate-300"
-              >
-                <span className="text-lg leading-none">{item.emoji}</span>
-                <span>{item.text}</span>
-              </motion.li>
-            ))}
-          </ul>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="leading-relaxed text-stone-600 dark:text-slate-300"
+          >
+            When I step away from math and research, I love spending time{' '}
+            <span className="font-semibold text-indigo-500 dark:text-indigo-400">
+              gazing at the night sky 🌌
+            </span>{' '}
+            and losing myself in books about{' '}
+            <span className="font-semibold text-indigo-500 dark:text-indigo-400">
+              astrophysics
+            </span>{' '}
+            — there&apos;s something almost poetic about the scale of the universe. I also have a deep love for{' '}
+            <span className="font-semibold text-fuchsia-500 dark:text-fuchsia-400">
+              oil painting 🎨
+            </span>
+            , the slow meditative process of mixing colors and watching something come to life on canvas. I&apos;m hopelessly drawn to{' '}
+            <span className="font-semibold text-amber-500 dark:text-amber-400">
+              puzzles 🧩
+            </span>{' '}
+            of every kind — the harder, the better. And on race weekends, everything else takes a back seat:{' '}
+            <span className="font-semibold text-rose-500 dark:text-rose-400">
+              Formula 1 🏎️
+            </span>{' '}
+            is basically a religion at this point.
+          </motion.p>
         </Section>
 
       </div>

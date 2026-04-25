@@ -10,32 +10,31 @@ const awmLinks = [
     label: 'Instagram',
     handle: '@awm.ubc',
     href: 'https://www.instagram.com/awm.ubc',
-    emoji: '📸',
+    emoji: '🌸',
     color: 'bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200 dark:bg-fuchsia-900/30 dark:text-fuchsia-300 dark:border-fuchsia-700/50',
   },
   {
-    label: 'GitHub',
-    handle: 'awmubc',
-    href: 'https://github.com/awmubc',
-    emoji: '💻',
-    color: 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600',
+    label: 'Website',
+    handle: 'awmubc.github.io',
+    href: 'https://awmubc.github.io',
+    emoji: '✨',
+    color: 'bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-700/50',
   },
 ]
 
 const accomplishments = [
   {
-    category: '🏗️ Building the Organization',
-    emoji: '',
+    category: '🌷 Building the Organization',
     items: [
       'Founded the undergraduate AWM chapter at UBC from the ground up, becoming the first such chapter at this institution',
       'Structured an operational framework with clearly defined executive roles across events, finance, outreach, and technology',
       'Designed and deployed a data-driven membership intake system to assess student interest, allocate roles, and track participation patterns',
-      'Established AWM UBC on Instagram and GitHub to grow our digital presence and outreach reach',
+      'Established AWM UBC on Instagram and launched our website to grow our digital presence and outreach reach',
+      'Secured support from the UBC Mathematics Department and the Pacific Institute for the Mathematical Sciences (PIMS)',
     ],
   },
   {
-    category: '🤝 Community & Faculty Engagement',
-    emoji: '',
+    category: '💜 Community & Faculty Engagement',
     items: [
       'Collaborate directly with faculty members and the Departmental Equity Committee to align our programming with broader inclusion goals',
       'Coordinate mentorship programs pairing undergraduate students with graduate students and faculty in mathematics and related fields',
@@ -43,10 +42,10 @@ const accomplishments = [
     ],
   },
   {
-    category: '🎓 Academic Support & Programming',
-    emoji: '',
+    category: '🎀 Events & Academic Programming',
     items: [
-      'Organize technical workshops on topics spanning mathematical methods, research tools, and career development',
+      'Organize social and networking events that bring together students across mathematical disciplines to foster community and belonging',
+      'Run technical workshops on topics spanning mathematical methods, research tools, and career development',
       'Build support structures for students pursuing mathematically intensive disciplines, with a focus on accessibility and retention',
       'Develop programming aimed at students interested in research, graduate studies, and quantitative careers',
     ],
