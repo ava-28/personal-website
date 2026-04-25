@@ -149,9 +149,9 @@ export default function HomePage() {
               transition={{ delay: 0 }}
               className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
-              I&apos;m a Mathematics undergraduate at UBC (BSc, expected 2027), working on NLP and transformer-based retrieval systems with{' '}
+              I&apos;m a Mathematics undergraduate at UBC (BSc, expected 2027), working on transformer-based retrieval with{' '}
               <a href="/research" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">Dr. Jian Zhu</a>
-              {' '}and on cross-lingual representation alignment with{' '}
+              , specifically on Reason-ModernColBERT and neural retrieval systems, and on multilingual transformer mapping and cross-lingual representation alignment with{' '}
               <a href="/research" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">Dr. Isabel Papadimitriou</a>
               , both at UBC.
             </motion.p>
@@ -162,7 +162,7 @@ export default function HomePage() {
               transition={{ delay: 0.06 }}
               className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
-              My interests span <span className="font-medium text-stone-800 dark:text-slate-200">NLP</span>, linear algebra, stochastic processes, optimization, and reinforcement learning — with a growing focus on <span className="font-medium text-stone-800 dark:text-slate-200">RL and robotics</span>. I&apos;m also drawn to <span className="font-medium text-stone-800 dark:text-slate-200">quantitative finance</span>: the mathematics of uncertainty, risk, and how rigorous modeling translates into real market decisions.
+              My interests span NLP, linear algebra, stochastic processes, optimization, and reinforcement learning, with a growing focus on <span className="font-medium text-stone-800 dark:text-slate-200">responsible AI</span>. I&apos;m also drawn to <span className="font-medium text-stone-800 dark:text-slate-200">quantitative finance</span>: the mathematics of uncertainty, risk, and how rigorous modeling translates into real market decisions.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -171,9 +171,9 @@ export default function HomePage() {
               transition={{ delay: 0.12 }}
               className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
-              My mathematical foundations were sharpened through competitive mathematics — I trained in the olympiad tradition through high school, an experience that deepened my appreciation for proof-based reasoning and the elegance of mathematical structure. Alongside my research, I founded and lead the{' '}
+              Alongside my research, I founded and lead the{' '}
               <a href="https://awmubc.github.io" target="_blank" rel="noopener noreferrer" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">AWM chapter at UBC</a>
-              {' '}— the first undergraduate chapter of the Association for Women in Mathematics at this institution, with a focus on building community, mentorship, and access for women across the mathematical sciences.
+              , the first undergraduate chapter of the Association for Women in Mathematics at this institution, with a focus on building community, mentorship, and access for women across the mathematical sciences.
             </motion.p>
           </div>
         </Section>
