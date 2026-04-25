@@ -178,56 +178,6 @@ export default function HomePage() {
           </div>
         </Section>
 
-        {/* Education */}
-        <Section className="mb-20">
-          <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
-            Education
-          </h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
-            {/* UBC */}
-            <motion.a
-              href="https://www.math.ubc.ca"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0 }}
-              whileHover={{ y: -2 }}
-              className="group block rounded-xl border border-stone-200 bg-white/60 p-5 transition-all hover:border-accent-300 hover:shadow-sm dark:border-slate-700 dark:bg-slate-800/60 dark:hover:border-accent-600"
-            >
-              <p className="font-medium text-stone-900 transition-colors group-hover:text-accent-600 dark:text-slate-100 dark:group-hover:text-accent-400">
-                University of British Columbia
-              </p>
-              <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">
-                BSc Mathematics · Expected 2027
-              </p>
-              <p className="mt-3 text-xs text-accent-500 opacity-0 transition-opacity group-hover:opacity-100 dark:text-accent-400">
-                math.ubc.ca →
-              </p>
-            </motion.a>
-
-            {/* SAMPAD */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.07 }}
-              className="rounded-xl border border-stone-200 bg-white/60 p-5 dark:border-slate-700 dark:bg-slate-800/60"
-            >
-              <p className="font-medium text-stone-900 dark:text-slate-100">
-                Farznegan High School (SAMPAD)
-              </p>
-              <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">
-                Secondary School Education
-              </p>
-              {/* placeholder to keep same height as UBC card */}
-              <p className="mt-3 text-xs text-transparent select-none">·</p>
-            </motion.div>
-
-          </div>
-        </Section>
 
         {/* Contact */}
         <Section className="mb-8">

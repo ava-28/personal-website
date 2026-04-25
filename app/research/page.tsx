@@ -630,6 +630,65 @@ export default function ResearchPage() {
           </motion.div>
         </AnimatePresence>
 
+        {/* Presentations */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-20"
+        >
+          <h2 className="mb-6 font-sans text-xl font-bold text-stone-900 dark:text-white">
+            Presentations
+          </h2>
+
+          <div className="rounded-xl border border-stone-200 bg-white/60 p-6 dark:border-slate-700 dark:bg-slate-800/60">
+            {/* Header row */}
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p className="font-sans text-sm font-bold text-stone-900 dark:text-slate-100">
+                  Sparse-to-Dense Retrieval on BRIGHT: SPLADE Retrieval with ColBERT Reranking
+                </p>
+                <p className="mt-1 text-sm text-accent-600 dark:text-accent-400">
+                  Canadian AI 2026 · Responsible AI Track · Poster / 3MT
+                </p>
+              </div>
+              <div className="flex flex-col items-end gap-1.5 shrink-0">
+                <span className="rounded-full bg-accent-100 px-3 py-1 text-xs font-bold text-accent-700 dark:bg-accent-900/40 dark:text-accent-300">
+                  NSERC CREATE Scholarship
+                </span>
+                <span className="text-xs text-stone-400 dark:text-slate-500">May 2026</span>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="my-4 border-t border-stone-100 dark:border-slate-700/60" />
+
+            {/* Abstract */}
+            <p className="text-sm leading-relaxed text-stone-600 dark:text-slate-300">
+              This work evaluates a sparse-to-dense retrieval pipeline on the BRIGHT benchmark, a challenging
+              reasoning-intensive retrieval dataset. We use SPLADE, a learned sparse retrieval model, as a first-stage
+              retriever over the biology domain, followed by ColBERT as a late-interaction reranker. Our work
+              reproduces and stress-tests this pipeline under realistic evaluation conditions, examining where sparse
+              retrieval succeeds and where denser reranking is necessary to close the performance gap. The study
+              contributes a reproducibility perspective on the interaction between sparse and dense retrieval in
+              complex, knowledge-intensive tasks.
+            </p>
+
+            {/* Tags */}
+            <div className="mt-4 flex flex-wrap gap-2">
+              {['SPLADE', 'ColBERT', 'BRIGHT Benchmark', 'Sparse-to-Dense', 'Reranking', 'Reproducibility'].map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full bg-stone-100 px-2.5 py-0.5 text-xs font-medium text-stone-500 dark:bg-slate-800 dark:text-slate-400"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </div>
   )
