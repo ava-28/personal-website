@@ -21,7 +21,7 @@ export function Navigation() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center gap-0.5 rounded-full border border-white/20 bg-white/60 px-3 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-2xl backdrop-saturate-150 dark:border-white/[0.12] dark:bg-white/[0.06] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35)]"
+        className="flex items-center gap-0.5 rounded-full border border-white/30 bg-white/20 px-3 py-2 shadow-[0_4px_24px_rgba(0,0,0,0.06)] backdrop-blur-2xl backdrop-saturate-150 dark:border-white/[0.12] dark:bg-white/[0.06] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35)]"
       >
         {navLinks.map((link) => {
           const isActive = pathname === link.href

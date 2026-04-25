@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { Card } from '@/components/Card'
-import { DecorativeShapes } from '@/components/DecorativeShapes'
 
 const researchPositions = [
   {
@@ -35,7 +34,6 @@ const researchPositions = [
 export default function ResearchPage() {
   return (
     <div className="relative overflow-hidden">
-      <DecorativeShapes />
       <div className="relative z-10 mx-auto max-w-3xl px-6 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { Card } from '@/components/Card'
-import { DecorativeShapes } from '@/components/DecorativeShapes'
 import { ProjectVisual } from '@/components/ProjectVisual'
 import type { ProjectVisualKind } from '@/components/ProjectVisual'
 
@@ -62,7 +61,6 @@ const projects: Project[] = [
 export default function ProjectsPage() {
   return (
     <div className="relative overflow-hidden">
-      <DecorativeShapes />
       <div className="relative z-10 mx-auto max-w-3xl px-6 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Card } from '@/components/Card'
-import { DecorativeShapes } from '@/components/DecorativeShapes'
 
 const awmLinks = [
   {
@@ -61,7 +60,6 @@ const reflection =
 export default function LeadershipPage() {
   return (
     <div className="relative overflow-hidden">
-      <DecorativeShapes />
       <div className="relative z-10 mx-auto max-w-3xl px-6 pb-24">
 
         {/* Page header */}

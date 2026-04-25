@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
-import { DecorativeShapes } from '@/components/DecorativeShapes'
+import { motion } from 'framer-motion'
 import { MathBackground } from '@/components/MathBackground'
 import { Section } from '@/components/Section'
 
@@ -48,7 +47,6 @@ const heroTags = [
 const TAGLINE = 'Mathematics × Machine Learning × UBC'
 
 export default function HomePage() {
-  const [sampadOpen, setSampadOpen] = useState(false)
   const [typed, setTyped] = useState('')
   const [typingDone, setTypingDone] = useState(false)
 
@@ -75,11 +73,10 @@ export default function HomePage() {
   return (
     <div className="relative overflow-hidden">
       <MathBackground />
-      <DecorativeShapes />
       <div className="relative z-10 mx-auto max-w-3xl px-6 pb-20">
 
         {/* Hero */}
-        <div className="relative mb-24 pt-12">
+        <div className="relative mb-14 pt-4">
           {/* Animated background blobs */}
           <motion.div
             aria-hidden
@@ -116,12 +113,12 @@ export default function HomePage() {
             Hey, I&apos;m
           </motion.p>
 
-          {/* Name with gradient */}
+          {/* Name */}
           <motion.h1
-            initial={{ opacity: 0, y: 22 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-1 font-playfair text-5xl font-bold italic tracking-tight md:text-7xl"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-1 font-sans text-3xl font-semibold tracking-tight md:text-4xl"
           >
             <span className="bg-gradient-to-r from-accent-500 via-violet-500 to-indigo-400 bg-clip-text text-transparent dark:from-accent-400 dark:via-violet-400 dark:to-indigo-300">
               Ava Ahmadi
@@ -135,37 +132,6 @@ export default function HomePage() {
               <span className="ml-0.5 inline-block h-[1.1em] w-[2px] translate-y-[2px] animate-pulse rounded-sm bg-accent-500 align-middle dark:bg-accent-400" />
             )}
           </p>
-
-          {/* Identity tags */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.55 }}
-            className="mt-5 flex flex-wrap gap-2"
-          >
-            {heroTags.map((tag, i) => {
-              const pill = (
-                <motion.span
-                  className={`inline-block rounded-full border px-3 py-1 text-xs font-medium cursor-pointer ${tag.color}`}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 + i * 0.07, duration: 0.3 }}
-                  whileHover={{ y: -2, transition: { duration: 0.15 } }}
-                >
-                  {tag.label}
-                </motion.span>
-              )
-              return tag.external ? (
-                <a key={tag.label} href={tag.href} target="_blank" rel="noopener noreferrer">
-                  {pill}
-                </a>
-              ) : (
-                <Link key={tag.label} href={tag.href}>
-                  {pill}
-                </Link>
-              )
-            })}
-          </motion.div>
 
           {/* CTA links */}
           <motion.div
@@ -193,12 +159,12 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* About */}
+        {/* About me */}
         <Section className="mb-20">
           <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
-            👋 About
+            👋 about me
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-3">
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -206,7 +172,11 @@ export default function HomePage() {
               transition={{ delay: 0 }}
               className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
-              I&apos;m a Mathematics undergraduate at UBC working at the intersection of machine learning, natural language processing, and mathematical theory. I hold two active research positions: one studying transformer architectures and retrieval systems with Dr. Jian Zhu, and another investigating cross-lingual representation alignment with Dr. Isabel Papadimitriou.
+              I&apos;m a Mathematics undergraduate at UBC (BSc, expected 2027), working on NLP and transformer-based retrieval systems with{' '}
+              <a href="/research" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">Dr. Jian Zhu</a>
+              {' '}and on cross-lingual representation alignment with{' '}
+              <a href="/research" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">Dr. Isabel Papadimitriou</a>
+              , both at UBC.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -215,8 +185,43 @@ export default function HomePage() {
               transition={{ delay: 0.06 }}
               className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
-              I&apos;m also drawn to the mathematical underpinnings of complex systems: stochastic processes, optimization, and reinforcement learning, and how these connect to quantitative finance and astrophysics. Outside of research, I founded and lead the AWM chapter at UBC.
+              Broadly interested in stochastic processes, optimization, and reinforcement learning. I also founded and lead the{' '}
+              <a href="https://awmubc.github.io" target="_blank" rel="noopener noreferrer" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">AWM chapter at UBC</a>
+              .
             </motion.p>
+
+            {/* Identity tags — moved from hero */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.12 }}
+              className="flex flex-wrap gap-2 pt-2"
+            >
+              {heroTags.map((tag, i) => {
+                const pill = (
+                  <motion.span
+                    className={`inline-block rounded-full border px-3 py-1 text-xs font-medium cursor-pointer ${tag.color}`}
+                    initial={{ opacity: 0, scale: 0.88 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.15 + i * 0.06, duration: 0.25 }}
+                    whileHover={{ y: -2, transition: { duration: 0.15 } }}
+                  >
+                    {tag.label}
+                  </motion.span>
+                )
+                return tag.external ? (
+                  <a key={tag.label} href={tag.href} target="_blank" rel="noopener noreferrer">
+                    {pill}
+                  </a>
+                ) : (
+                  <Link key={tag.label} href={tag.href}>
+                    {pill}
+                  </Link>
+                )
+              })}
+            </motion.div>
           </div>
         </Section>
 
@@ -256,60 +261,16 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.07 }}
-              className="relative"
+              className="rounded-xl border border-stone-200 bg-white/60 p-5 dark:border-slate-700 dark:bg-slate-800/60"
             >
-              <button
-                onClick={() => setSampadOpen((v) => !v)}
-                className="group w-full rounded-xl border border-stone-200 bg-white/60 p-5 text-left transition-all hover:border-accent-300 hover:shadow-sm dark:border-slate-700 dark:bg-slate-800/60 dark:hover:border-accent-600"
-              >
-                <p className="font-medium text-stone-900 transition-colors group-hover:text-accent-600 dark:text-slate-100 dark:group-hover:text-accent-400">
-                  Farznegan High School (SAMPAD)
-                </p>
-                <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">
-                  Secondary School Education
-                </p>
-                <p className="mt-3 text-xs text-accent-500 dark:text-accent-400">
-                  {sampadOpen ? 'Close ↑' : 'Learn more ↓'}
-                </p>
-              </button>
-
-              <AnimatePresence>
-                {sampadOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -6, scale: 0.97 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -6, scale: 0.97 }}
-                    transition={{ duration: 0.18 }}
-                    className="absolute left-0 right-0 top-full z-20 mt-1.5 overflow-hidden rounded-xl border border-stone-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900"
-                  >
-                    <a
-                      href="https://www.linkedin.com/school/iransampad/people/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 px-4 py-3.5 text-sm text-stone-700 transition-colors hover:bg-stone-50 dark:text-slate-300 dark:hover:bg-slate-800"
-                    >
-                      <span className="text-base">💼</span>
-                      <div>
-                        <p className="font-medium">LinkedIn Community</p>
-                        <p className="text-xs text-stone-400 dark:text-slate-500">SAMPAD alumni network</p>
-                      </div>
-                    </a>
-                    <div className="mx-4 h-px bg-stone-100 dark:bg-slate-700" />
-                    <a
-                      href="https://en.wikipedia.org/wiki/National_Organization_for_Development_of_Exceptional_Talents"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 px-4 py-3.5 text-sm text-stone-700 transition-colors hover:bg-stone-50 dark:text-slate-300 dark:hover:bg-slate-800"
-                    >
-                      <span className="text-base">📖</span>
-                      <div>
-                        <p className="font-medium">Wikipedia — NODET / SAMPAD</p>
-                        <p className="text-xs text-stone-400 dark:text-slate-500">National gifted education org</p>
-                      </div>
-                    </a>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <p className="font-medium text-stone-900 dark:text-slate-100">
+                Farznegan High School (SAMPAD)
+              </p>
+              <p className="mt-1 text-sm text-stone-500 dark:text-slate-400">
+                Secondary School Education
+              </p>
+              {/* placeholder to keep same height as UBC card */}
+              <p className="mt-3 text-xs text-transparent select-none">·</p>
             </motion.div>
 
           </div>
