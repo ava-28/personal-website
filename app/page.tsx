@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { DecorativeShapes } from '@/components/DecorativeShapes'
@@ -45,8 +45,32 @@ const heroTags = [
   },
 ]
 
+const TAGLINE = 'Mathematics × Machine Learning × UBC'
+
 export default function HomePage() {
   const [sampadOpen, setSampadOpen] = useState(false)
+  const [typed, setTyped] = useState('')
+  const [typingDone, setTypingDone] = useState(false)
+
+  useEffect(() => {
+    let intervalId: ReturnType<typeof setInterval>
+    // Start after the name has animated in (~0.8s)
+    const delayId = setTimeout(() => {
+      let i = 0
+      intervalId = setInterval(() => {
+        i++
+        setTyped(TAGLINE.slice(0, i))
+        if (i >= TAGLINE.length) {
+          clearInterval(intervalId)
+          setTypingDone(true)
+        }
+      }, 52)
+    }, 820)
+    return () => {
+      clearTimeout(delayId)
+      clearInterval(intervalId)
+    }
+  }, [])
 
   return (
     <div className="relative overflow-hidden">
@@ -97,7 +121,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-1 font-sans text-6xl font-black tracking-tight md:text-8xl"
+            className="mt-1 font-playfair text-5xl font-bold italic tracking-tight md:text-7xl"
           >
             <span className="bg-gradient-to-r from-accent-500 via-violet-500 to-indigo-400 bg-clip-text text-transparent dark:from-accent-400 dark:via-violet-400 dark:to-indigo-300">
               Ava Ahmadi
@@ -105,14 +129,12 @@ export default function HomePage() {
           </motion.h1>
 
           {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.38 }}
-            className="mt-4 text-lg text-stone-600 dark:text-slate-400"
-          >
-            Mathematics × Machine Learning × UBC
-          </motion.p>
+          <p className="mt-4 min-h-[1.75rem] text-lg text-stone-600 dark:text-slate-400">
+            {typed}
+            {!typingDone && (
+              <span className="ml-0.5 inline-block h-[1.1em] w-[2px] translate-y-[2px] animate-pulse rounded-sm bg-accent-500 align-middle dark:bg-accent-400" />
+            )}
+          </p>
 
           {/* Identity tags */}
           <motion.div
