@@ -47,7 +47,7 @@ export default function ResearchPage() {
             Research
           </h1>
           <p className="mt-2 text-stone-600 dark:text-stone-400">
-            Ongoing research in NLP and representation learning
+            Two active research positions at the University of British Columbia
           </p>
         </motion.div>
 
@@ -59,7 +59,7 @@ export default function ResearchPage() {
                   <h2 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100">
                     {position.title}
                   </h2>
-                  <p className="mt-1 text-sm text-accent-600">
+                  <p className="mt-1 text-sm text-accent-600 dark:text-accent-400">
                     Supervisor: {position.supervisor}
                   </p>
                   <p className="text-sm text-stone-600 dark:text-stone-400">

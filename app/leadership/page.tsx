@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Card } from '@/components/Card'
 import { DecorativeShapes } from '@/components/DecorativeShapes'
@@ -37,17 +38,33 @@ export default function LeadershipPage() {
             Leadership
           </h1>
           <p className="mt-2 text-stone-600 dark:text-stone-400">
-            Community and organizational roles
+            Founding the Association for Women in Mathematics at UBC
           </p>
         </motion.div>
 
         <Card>
           <div className="space-y-5">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative h-56 w-full overflow-hidden rounded-md border border-stone-200 bg-stone-100 dark:border-stone-700 dark:bg-stone-900 sm:h-72"
+            >
+              <Image
+                src="/awm-ubc.png"
+                alt="Association for Women in Mathematics at UBC"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-cover"
+              />
+            </motion.div>
             <div>
               <h2 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100">
                 {leadership.title}
               </h2>
-              <p className="mt-1 text-accent-600">{leadership.organization}</p>
+              <p className="mt-1 text-accent-600 dark:text-accent-400">{leadership.organization}</p>
               <p className="text-sm text-stone-600 dark:text-stone-400">
                 {leadership.period}
               </p>

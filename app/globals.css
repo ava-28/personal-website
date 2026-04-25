@@ -7,7 +7,6 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply text-stone-800 antialiased transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100;
-    background-color: #e5e7eb;
+    @apply bg-stone-100 text-stone-800 antialiased transition-colors duration-300 dark:bg-stone-950 dark:text-stone-100;
   }
 }

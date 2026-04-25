@@ -74,7 +74,7 @@ export default function ProjectsPage() {
             Projects
           </h1>
           <p className="mt-2 text-stone-600 dark:text-stone-400">
-            Academic and research projects
+            Quantitative, machine learning, and NLP projects
           </p>
         </motion.div>
 
@@ -88,7 +88,7 @@ export default function ProjectsPage() {
                     {project.title}
                   </h2>
                   {project.subtitle && (
-                    <p className="mt-1 text-sm text-accent-600">
+                    <p className="mt-1 text-sm text-accent-600 dark:text-accent-400">
                       {project.subtitle}
                     </p>
                   )}
