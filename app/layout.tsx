@@ -21,7 +21,7 @@ export default function RootLayout({
     (function () {
       try {
         var stored = localStorage.getItem('ava-theme');
-        var isDark = stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var isDark = stored === 'light' ? false : true;
         document.documentElement.classList.toggle('dark', isDark);
       } catch (e) {}
     })();
@@ -34,7 +34,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col">
         <Navigation />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pt-24">{children}</main>
         <Footer />
       </body>
     </html>

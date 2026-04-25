@@ -27,17 +27,17 @@ export default function LeadershipPage() {
   return (
     <div className="relative overflow-hidden">
       <DecorativeShapes />
-      <div className="relative z-10 mx-auto max-w-3xl px-6 py-16">
+      <div className="relative z-10 mx-auto max-w-3xl px-6 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-16"
+          className="mb-16 pt-12"
         >
-          <h1 className="font-serif text-3xl font-semibold text-stone-900 md:text-4xl dark:text-stone-100">
+          <h1 className="font-sans text-5xl font-black tracking-tight text-stone-900 md:text-7xl dark:text-white">
             Leadership
           </h1>
-          <p className="mt-2 text-stone-600 dark:text-stone-400">
+          <p className="mt-3 text-stone-600 dark:text-slate-400">
             Founding the Association for Women in Mathematics at UBC
           </p>
         </motion.div>
@@ -49,7 +49,7 @@ export default function LeadershipPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative h-56 w-full overflow-hidden rounded-md border border-stone-200 bg-stone-100 dark:border-stone-700 dark:bg-stone-900 sm:h-72"
+              className="relative h-56 w-full overflow-hidden rounded-md border border-stone-200 bg-stone-100 dark:border-slate-700 dark:bg-slate-800 sm:h-72"
             >
               <Image
                 src="/awm-ubc.png"
@@ -61,29 +61,29 @@ export default function LeadershipPage() {
               />
             </motion.div>
             <div>
-              <h2 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100">
+              <h2 className="font-sans text-lg font-bold text-stone-900 dark:text-white">
                 {leadership.title}
               </h2>
               <p className="mt-1 text-accent-600 dark:text-accent-400">{leadership.organization}</p>
-              <p className="text-sm text-stone-600 dark:text-stone-400">
+              <p className="text-sm text-stone-600 dark:text-slate-400">
                 {leadership.period}
               </p>
             </div>
-            <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+            <p className="text-sm leading-relaxed text-stone-700 dark:text-slate-300">
               {leadership.overview}
             </p>
-            <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+            <p className="text-sm leading-relaxed text-stone-700 dark:text-slate-300">
               {leadership.focus}
             </p>
             <div>
-              <p className="mb-3 text-sm font-medium text-stone-800 dark:text-stone-200">
+              <p className="mb-3 text-sm font-medium text-stone-800 dark:text-slate-200">
                 As part of this effort, I:
               </p>
               <ul className="space-y-2">
                 {leadership.initiatives.map((initiative) => (
                   <li
                     key={initiative}
-                    className="flex items-start gap-2 text-stone-700 dark:text-stone-300"
+                    className="flex items-start gap-2 text-stone-700 dark:text-slate-300"
                   >
                     <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-300" />
                     <span className="text-sm leading-relaxed">{initiative}</span>
@@ -91,7 +91,7 @@ export default function LeadershipPage() {
                 ))}
               </ul>
             </div>
-            <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+            <p className="text-sm leading-relaxed text-stone-700 dark:text-slate-300">
               {leadership.reflection}
             </p>
           </div>

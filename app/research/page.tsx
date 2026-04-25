@@ -36,17 +36,17 @@ export default function ResearchPage() {
   return (
     <div className="relative overflow-hidden">
       <DecorativeShapes />
-      <div className="relative z-10 mx-auto max-w-3xl px-6 py-16">
+      <div className="relative z-10 mx-auto max-w-3xl px-6 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-16"
+          className="mb-16 pt-12"
         >
-          <h1 className="font-serif text-3xl font-semibold text-stone-900 md:text-4xl dark:text-stone-100">
+          <h1 className="font-sans text-5xl font-black tracking-tight text-stone-900 md:text-7xl dark:text-white">
             Research
           </h1>
-          <p className="mt-2 text-stone-600 dark:text-stone-400">
+          <p className="mt-3 text-stone-600 dark:text-slate-400">
             Two active research positions at the University of British Columbia
           </p>
         </motion.div>
@@ -56,13 +56,13 @@ export default function ResearchPage() {
             <Card key={position.title}>
               <div className="space-y-4">
                 <div>
-                  <h2 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100">
+                  <h2 className="font-sans text-lg font-bold text-stone-900 dark:text-white">
                     {position.title}
                   </h2>
                   <p className="mt-1 text-sm text-accent-600 dark:text-accent-400">
                     Supervisor: {position.supervisor}
                   </p>
-                  <p className="text-sm text-stone-600 dark:text-stone-400">
+                  <p className="text-sm text-stone-500 dark:text-slate-400">
                     {position.institution} · {position.period}
                   </p>
                 </div>
@@ -70,9 +70,9 @@ export default function ResearchPage() {
                   {position.highlights.map((highlight) => (
                     <li
                       key={highlight}
-                      className="flex items-start gap-2 text-stone-700 dark:text-stone-300"
+                      className="flex items-start gap-2 text-stone-600 dark:text-slate-300"
                     >
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-300" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-400" />
                       <span className="text-sm leading-relaxed">
                         {highlight}
                       </span>

@@ -36,51 +36,53 @@ export default function HomePage() {
   return (
     <div className="relative overflow-hidden">
       <DecorativeShapes />
-      <div className="relative z-10 mx-auto max-w-3xl px-6 py-16">
+      <div className="relative z-10 mx-auto max-w-3xl px-6 pb-20">
 
         {/* Hero */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="relative mb-20"
+          className="relative mb-24 pt-12"
         >
           <motion.div
             aria-hidden
-            className="pointer-events-none absolute -left-10 -top-8 h-28 w-28 rounded-2xl bg-accent-300/45 blur-2xl dark:bg-accent-700/35"
+            className="pointer-events-none absolute -left-10 -top-8 h-36 w-36 rounded-2xl bg-accent-300/30 blur-3xl dark:bg-accent-700/25"
             animate={{ x: [0, 6, 0], y: [0, -6, 0] }}
             transition={{ duration: 7.5, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <h1 className="font-serif text-3xl font-semibold text-stone-900 md:text-4xl dark:text-stone-100">
+          <p className="text-base font-medium text-stone-500 dark:text-slate-400">
+            Hey, I&apos;m
+          </p>
+          <h1 className="mt-1 font-sans text-6xl font-black tracking-tight text-stone-900 md:text-8xl dark:text-white">
             Ava Ahmadi
           </h1>
-          <p className="mt-2 text-stone-600 dark:text-stone-400">
-            Mathematics, machine learning, and the structure of things.
+          <p className="mt-4 text-lg text-stone-600 dark:text-slate-400">
+            Mathematics × Machine Learning × UBC
           </p>
-          <div className="mt-4 flex items-center gap-4">
+          <div className="mt-6 flex items-center gap-5">
             <a
               href="https://www.linkedin.com/in/ava-ahmadi1228"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-accent-600 transition-colors hover:text-accent-700 dark:text-accent-300 dark:hover:text-accent-200"
+              className="text-sm font-medium text-accent-600 transition-colors hover:text-accent-700 dark:text-accent-400 dark:hover:text-accent-300"
             >
-              LinkedIn
+              LinkedIn →
             </a>
-            <span className="text-stone-300 dark:text-stone-700">·</span>
             <a
               href="/cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-accent-600 transition-colors hover:text-accent-700 dark:text-accent-300 dark:hover:text-accent-200"
+              className="text-sm font-medium text-accent-600 transition-colors hover:text-accent-700 dark:text-accent-400 dark:hover:text-accent-300"
             >
-              CV
+              CV →
             </a>
           </div>
         </motion.div>
 
         {/* About */}
         <Section className="mb-20">
-          <h2 className="mb-6 font-serif text-xl font-semibold text-stone-900 dark:text-stone-100">
+          <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
             About
           </h2>
           <div className="space-y-4">
@@ -89,7 +91,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0 }}
-              className="leading-relaxed text-stone-700 dark:text-stone-300"
+              className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
               I&apos;m a Mathematics undergraduate at UBC working at the intersection of machine learning, natural language processing, and mathematical theory. I hold two active research positions — one studying transformer architectures and retrieval systems with Dr. Jian Zhu, and another investigating cross-lingual representation alignment with Dr. Isabel Papadimitriou.
             </motion.p>
@@ -98,16 +100,16 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.06 }}
-              className="leading-relaxed text-stone-700 dark:text-stone-300"
+              className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
-              I&apos;m also drawn to the mathematical underpinnings of complex systems — stochastic processes, optimization, and reinforcement learning — and how these connect to areas like quantitative finance and astrophysics, where rigorous modeling meets real-world uncertainty. Outside of research, I founded and lead the AWM chapter at UBC.
+              I&apos;m also drawn to the mathematical underpinnings of complex systems — stochastic processes, optimization, and reinforcement learning — and how these connect to quantitative finance and astrophysics. Outside of research, I founded and lead the AWM chapter at UBC.
             </motion.p>
           </div>
         </Section>
 
         {/* Education */}
         <Section className="mb-20">
-          <h2 className="mb-6 font-serif text-xl font-semibold text-stone-900 dark:text-stone-100">
+          <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
             Education
           </h2>
           <div className="space-y-5">
@@ -119,10 +121,10 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
               >
-                <p className="text-stone-900 dark:text-stone-100">
+                <p className="font-medium text-stone-900 dark:text-slate-100">
                   {item.institution}
                 </p>
-                <p className="text-sm text-stone-500 dark:text-stone-400">
+                <p className="text-sm text-stone-500 dark:text-slate-400">
                   {item.detail}
                 </p>
               </motion.div>
@@ -132,7 +134,7 @@ export default function HomePage() {
 
         {/* Research Interests */}
         <Section className="mb-20">
-          <h2 className="mb-6 font-serif text-xl font-semibold text-stone-900 dark:text-stone-100">
+          <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
             Research Interests
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -143,7 +145,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.04 }}
-                className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-sm text-stone-700 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200"
+                className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-sm text-stone-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
               >
                 {item}
               </motion.span>
@@ -153,7 +155,7 @@ export default function HomePage() {
 
         {/* Outside of Research */}
         <Section>
-          <h2 className="mb-6 font-serif text-xl font-semibold text-stone-900 dark:text-stone-100">
+          <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
             Outside of Research
           </h2>
           <ul className="space-y-3">
@@ -164,9 +166,9 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="flex items-center gap-3 text-stone-700 dark:text-stone-300"
+                className="flex items-center gap-3 text-stone-600 dark:text-slate-300"
               >
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-300" />
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-400" />
                 <span>{item}</span>
               </motion.li>
             ))}

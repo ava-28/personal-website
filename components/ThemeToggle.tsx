@@ -45,7 +45,7 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       aria-label="Toggle dark mode"
       disabled={!isMounted}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-stone-300 bg-white text-stone-700 transition-colors hover:border-accent-400 hover:text-accent-600 disabled:cursor-not-allowed disabled:opacity-60 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 dark:hover:border-accent-500 dark:hover:text-accent-300"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-stone-200 bg-transparent text-stone-600 transition-colors hover:border-accent-400 hover:text-accent-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-400 dark:hover:border-accent-500 dark:hover:text-accent-400"
     >
       {theme === 'dark' ? (
         <svg

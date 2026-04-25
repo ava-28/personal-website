@@ -6,12 +6,12 @@ export function DecorativeShapes() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       <motion.div
-        className="absolute -right-8 top-20 h-24 w-24 rounded-lg border border-accent-300/60 bg-white/55 dark:border-accent-700/60 dark:bg-stone-900/65"
+        className="absolute -right-8 top-20 h-24 w-24 rounded-lg border border-accent-300/60 bg-white/55 dark:border-accent-700/60 dark:bg-slate-800/65"
         animate={{ x: [0, -10, 0], y: [0, 10, 0], rotate: [0, 4, 0] }}
         transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute left-[-2rem] top-[28%] h-28 w-28 rounded-xl border border-accent-300/60 bg-white/70 dark:border-accent-700/55 dark:bg-stone-900/70"
+        className="absolute left-[-2rem] top-[28%] h-28 w-28 rounded-xl border border-accent-300/60 bg-white/70 dark:border-accent-700/55 dark:bg-slate-800/70"
         animate={{ rotate: [0, 8, 0], y: [0, -8, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
@@ -21,7 +21,7 @@ export function DecorativeShapes() {
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute bottom-16 left-[18%] h-20 w-20 rounded-lg border border-accent-300/60 bg-white/60 dark:border-accent-700/55 dark:bg-stone-900/65"
+        className="absolute bottom-16 left-[18%] h-20 w-20 rounded-lg border border-accent-300/60 bg-white/60 dark:border-accent-700/55 dark:bg-slate-800/65"
         animate={{ y: [0, 9, 0], rotate: [0, -5, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
@@ -31,7 +31,7 @@ export function DecorativeShapes() {
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute left-[36%] top-[14%] h-12 w-12 rounded-md border border-accent-300/55 bg-white/45 dark:border-accent-700/50 dark:bg-stone-900/60"
+        className="absolute left-[36%] top-[14%] h-12 w-12 rounded-md border border-accent-300/55 bg-white/45 dark:border-accent-700/50 dark:bg-slate-800/60"
         animate={{ y: [0, 6, 0], rotate: [0, 8, 0] }}
         transition={{ duration: 7.5, repeat: Infinity, ease: 'easeInOut' }}
       />

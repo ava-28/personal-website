@@ -152,7 +152,7 @@ function TransformerVisual() {
 export function ProjectVisual({ kind }: ProjectVisualProps) {
   return (
     <motion.div
-      className="mb-4 overflow-hidden rounded-lg border border-accent-100 bg-white dark:border-stone-700 dark:bg-stone-950"
+      className="mb-4 overflow-hidden rounded-lg border border-accent-100 bg-white dark:border-slate-700 dark:bg-slate-800"
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2 }}
     >
