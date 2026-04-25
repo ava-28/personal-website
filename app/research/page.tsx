@@ -586,7 +586,7 @@ export default function ResearchPage() {
           transition={{ duration: 0.5 }}
           className="mb-10 pt-12"
         >
-          <h1 className="font-sans text-5xl font-black tracking-tight text-stone-900 md:text-7xl dark:text-white">
+          <h1 className="font-sans text-3xl font-semibold tracking-tight text-stone-900 md:text-4xl dark:text-white">
             Research
           </h1>
           <p className="mt-3 text-stone-600 dark:text-slate-400">
