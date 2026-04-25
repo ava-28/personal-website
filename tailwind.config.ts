@@ -25,7 +25,7 @@ const config: Config = {
       },
       fontFamily: {
         serif: ['Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
-        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['var(--font-open-sans)', 'system-ui', '-apple-system', 'sans-serif'],
         playfair: ['var(--font-playfair)', 'Georgia', 'serif'],
       },
     },

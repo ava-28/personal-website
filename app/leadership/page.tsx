@@ -9,21 +9,19 @@ const awmLinks = [
     label: 'Instagram',
     handle: '@awm.ubc',
     href: 'https://www.instagram.com/awm.ubc',
-    emoji: '🌸',
     color: 'bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200 dark:bg-fuchsia-900/30 dark:text-fuchsia-300 dark:border-fuchsia-700/50',
   },
   {
     label: 'Website',
     handle: 'awmubc.github.io',
     href: 'https://awmubc.github.io',
-    emoji: '✨',
     color: 'bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-700/50',
   },
 ]
 
 const accomplishments = [
   {
-    category: '🌷 Building the Organization',
+    category: 'Building the Organization',
     items: [
       'Founded the undergraduate AWM chapter at UBC from the ground up, becoming the first such chapter at this institution',
       'Structured an operational framework with clearly defined executive roles across events, finance, outreach, and technology',
@@ -33,7 +31,7 @@ const accomplishments = [
     ],
   },
   {
-    category: '💜 Community & Faculty Engagement',
+    category: 'Community & Faculty Engagement',
     items: [
       'Collaborate directly with faculty members and the Departmental Equity Committee to align our programming with broader inclusion goals',
       'Coordinate mentorship programs pairing undergraduate students with graduate students and faculty in mathematics and related fields',
@@ -41,7 +39,7 @@ const accomplishments = [
     ],
   },
   {
-    category: '🎀 Events & Academic Programming',
+    category: 'Events & Academic Programming',
     items: [
       'Organize social and networking events that bring together students across mathematical disciplines to foster community and belonging',
       'Run technical workshops on topics spanning mathematical methods, research tools, and career development',
@@ -144,7 +142,6 @@ export default function LeadershipPage() {
                   rel="noopener noreferrer"
                   className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-all hover:shadow-sm hover:-translate-y-0.5 ${link.color}`}
                 >
-                  <span>{link.emoji}</span>
                   <span>{link.label}</span>
                   <span className="opacity-70">{link.handle}</span>
                 </a>

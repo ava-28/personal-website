@@ -16,7 +16,7 @@ export function Navigation() {
   const pathname = usePathname()
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-5">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-3">
       <motion.nav
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

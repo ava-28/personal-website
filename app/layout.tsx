@@ -1,8 +1,15 @@
 import type { Metadata } from 'next'
-import { Playfair_Display } from 'next/font/google'
+import { Open_Sans, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  variable: '--font-open-sans',
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+})
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -37,13 +44,13 @@ export default function RootLayout({
   `
 
   return (
-    <html lang="en" suppressHydrationWarning className={playfair.variable}>
+    <html lang="en" suppressHydrationWarning className={`${openSans.variable} ${playfair.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-screen flex flex-col">
         <Navigation />
-        <main className="flex-1 pt-24">{children}</main>
+        <main className="flex-1 pt-16">{children}</main>
         <Footer />
       </body>
     </html>

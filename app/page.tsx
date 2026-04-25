@@ -6,41 +6,32 @@ import { motion } from 'framer-motion'
 import { MathBackground } from '@/components/MathBackground'
 import { Section } from '@/components/Section'
 
-const researchInterests = [
-  'Transformer-based retrieval',
-  'Multilingual representation learning',
-  'Reinforcement learning',
-  'Mathematical optimization',
-  'Stochastic processes',
-  'HPC & large-scale training',
-  'Quantitative finance',
-]
 
 
 const heroTags = [
   {
-    label: '🤖 ML Research',
+    label: 'ML Research',
     href: '/research',
     external: false,
-    color: 'bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-700/50',
+    color: 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300',
   },
   {
-    label: '🎓 UBC Math · 2027',
+    label: 'UBC Math · 2027',
     href: '/projects',
     external: false,
-    color: 'bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-700/50',
+    color: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300',
   },
   {
-    label: '🌸 AWM Founder',
+    label: 'AWM Founder',
     href: 'https://awmubc.github.io',
     external: true,
-    color: 'bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200 dark:bg-fuchsia-900/30 dark:text-fuchsia-300 dark:border-fuchsia-700/50',
+    color: 'bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-900/30 dark:text-fuchsia-300',
   },
   {
-    label: '📐 Optimization · Stochastics · NLP',
+    label: 'Optimization · Stochastics · NLP',
     href: '/research',
     external: false,
-    color: 'bg-sky-100 text-sky-700 border-sky-200 dark:bg-sky-900/30 dark:text-sky-300 dark:border-sky-700/50',
+    color: 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300',
   },
 ]
 
@@ -152,7 +143,7 @@ export default function HomePage() {
               href="/cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-stone-300 px-5 py-2 text-sm font-semibold text-stone-700 shadow-sm transition-all hover:border-stone-400 hover:shadow-md dark:border-slate-600 dark:text-slate-200 dark:hover:border-slate-400"
+              className="rounded-full bg-stone-100 px-5 py-2 text-sm font-bold text-stone-700 shadow-sm transition-all hover:bg-stone-200 hover:shadow-md dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
             >
               CV
             </a>
@@ -162,7 +153,7 @@ export default function HomePage() {
         {/* About me */}
         <Section className="mb-20">
           <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
-            👋 about me
+            about me
           </h2>
           <div className="space-y-3">
             <motion.p
@@ -185,7 +176,7 @@ export default function HomePage() {
               transition={{ delay: 0.06 }}
               className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
-              Broadly interested in stochastic processes, optimization, and reinforcement learning. I also founded and lead the{' '}
+              Broadly interested in stochastic processes, optimization, and reinforcement learning — with a growing focus on <span className="font-medium text-stone-800 dark:text-slate-200">RL and robotics</span> as research areas. I also founded and lead the{' '}
               <a href="https://awmubc.github.io" target="_blank" rel="noopener noreferrer" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">AWM chapter at UBC</a>
               .
             </motion.p>
@@ -201,7 +192,7 @@ export default function HomePage() {
               {heroTags.map((tag, i) => {
                 const pill = (
                   <motion.span
-                    className={`inline-block rounded-full border px-3 py-1 text-xs font-medium cursor-pointer ${tag.color}`}
+                    className={`inline-block rounded-full px-3 py-1 text-xs font-bold cursor-pointer ${tag.color}`}
                     initial={{ opacity: 0, scale: 0.88 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -228,7 +219,7 @@ export default function HomePage() {
         {/* Education */}
         <Section className="mb-20">
           <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
-            🎓 Education
+            Education
           </h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 
@@ -276,62 +267,7 @@ export default function HomePage() {
           </div>
         </Section>
 
-        {/* Research Interests */}
-        <Section className="mb-20">
-          <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
-            🔬 Research Interests
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {researchInterests.map((item, i) => (
-              <motion.span
-                key={item}
-                initial={{ opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.04 }}
-                className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-sm text-stone-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
-              >
-                {item}
-              </motion.span>
-            ))}
-          </div>
-        </Section>
 
-        {/* Outside of Research */}
-        <Section>
-          <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
-            ✨ Outside of Research
-          </h2>
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="leading-relaxed text-stone-600 dark:text-slate-300"
-          >
-            When I step away from math and research, I love spending time{' '}
-            <span className="font-semibold text-indigo-500 dark:text-indigo-400">
-              gazing at the night sky 🌌
-            </span>{' '}
-            and losing myself in books about{' '}
-            <span className="font-semibold text-indigo-500 dark:text-indigo-400">
-              astrophysics
-            </span>{' '}
-            — there&apos;s something almost poetic about the scale of the universe. I also have a deep love for{' '}
-            <span className="font-semibold text-fuchsia-500 dark:text-fuchsia-400">
-              oil painting 🎨
-            </span>
-            , the slow meditative process of mixing colors and watching something come to life on canvas. I&apos;m hopelessly drawn to{' '}
-            <span className="font-semibold text-amber-500 dark:text-amber-400">
-              puzzles 🧩
-            </span>{' '}
-            of every kind — the harder, the better. And on race weekends, everything else takes a back seat:{' '}
-            <span className="font-semibold text-rose-500 dark:text-rose-400">
-              Formula 1 🏎️
-            </span>{' '}
-            is basically a religion at this point.
-          </motion.p>
-        </Section>
 
       </div>
     </div>
