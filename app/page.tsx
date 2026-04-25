@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { DecorativeShapes } from '@/components/DecorativeShapes'
+import { MathBackground } from '@/components/MathBackground'
 import { Section } from '@/components/Section'
 
 const researchInterests = [
@@ -15,10 +16,10 @@ const researchInterests = [
 ]
 
 const personalInterests = [
-  'Watching stars and reading about astrophysics',
-  'Oil painting',
-  'Solving puzzles',
-  'Formula 1',
+  { emoji: '🌌', text: 'Watching stars and reading about astrophysics' },
+  { emoji: '🎨', text: 'Oil painting' },
+  { emoji: '🧩', text: 'Solving puzzles' },
+  { emoji: '🏎️', text: 'Formula 1' },
 ]
 
 const education = [
@@ -35,6 +36,7 @@ const education = [
 export default function HomePage() {
   return (
     <div className="relative overflow-hidden">
+      <MathBackground />
       <DecorativeShapes />
       <div className="relative z-10 mx-auto max-w-3xl px-6 pb-20">
 
@@ -76,7 +78,7 @@ export default function HomePage() {
             Hey, I&apos;m
           </motion.p>
 
-          {/* Name — gradient */}
+          {/* Name with gradient */}
           <motion.h1
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
@@ -106,10 +108,10 @@ export default function HomePage() {
             className="mt-5 flex flex-wrap gap-2"
           >
             {[
-              { label: 'ML Research', color: 'bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-700/50' },
-              { label: 'UBC Math · 2027', color: 'bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-700/50' },
-              { label: 'AWM Founder', color: 'bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200 dark:bg-fuchsia-900/30 dark:text-fuchsia-300 dark:border-fuchsia-700/50' },
-              { label: 'Optimization · Stochastics · NLP', color: 'bg-sky-100 text-sky-700 border-sky-200 dark:bg-sky-900/30 dark:text-sky-300 dark:border-sky-700/50' },
+              { label: '🤖 ML Research', color: 'bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-700/50' },
+              { label: '🎓 UBC Math · 2027', color: 'bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-700/50' },
+              { label: '🌸 AWM Founder', color: 'bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200 dark:bg-fuchsia-900/30 dark:text-fuchsia-300 dark:border-fuchsia-700/50' },
+              { label: '📐 Optimization · Stochastics · NLP', color: 'bg-sky-100 text-sky-700 border-sky-200 dark:bg-sky-900/30 dark:text-sky-300 dark:border-sky-700/50' },
             ].map((tag, i) => (
               <motion.span
                 key={tag.label}
@@ -153,7 +155,7 @@ export default function HomePage() {
         {/* About */}
         <Section className="mb-20">
           <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
-            About
+            👋 About
           </h2>
           <div className="space-y-4">
             <motion.p
@@ -163,7 +165,7 @@ export default function HomePage() {
               transition={{ delay: 0 }}
               className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
-              I&apos;m a Mathematics undergraduate at UBC working at the intersection of machine learning, natural language processing, and mathematical theory. I hold two active research positions — one studying transformer architectures and retrieval systems with Dr. Jian Zhu, and another investigating cross-lingual representation alignment with Dr. Isabel Papadimitriou.
+              I&apos;m a Mathematics undergraduate at UBC working at the intersection of machine learning, natural language processing, and mathematical theory. I hold two active research positions: one studying transformer architectures and retrieval systems with Dr. Jian Zhu, and another investigating cross-lingual representation alignment with Dr. Isabel Papadimitriou.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -172,7 +174,7 @@ export default function HomePage() {
               transition={{ delay: 0.06 }}
               className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
-              I&apos;m also drawn to the mathematical underpinnings of complex systems — stochastic processes, optimization, and reinforcement learning — and how these connect to quantitative finance and astrophysics. Outside of research, I founded and lead the AWM chapter at UBC.
+              I&apos;m also drawn to the mathematical underpinnings of complex systems: stochastic processes, optimization, and reinforcement learning, and how these connect to quantitative finance and astrophysics. Outside of research, I founded and lead the AWM chapter at UBC.
             </motion.p>
           </div>
         </Section>
@@ -180,7 +182,7 @@ export default function HomePage() {
         {/* Education */}
         <Section className="mb-20">
           <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
-            Education
+            🎓 Education
           </h2>
           <div className="space-y-5">
             {education.map((item, i) => (
@@ -205,7 +207,7 @@ export default function HomePage() {
         {/* Research Interests */}
         <Section className="mb-20">
           <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
-            Research Interests
+            🔬 Research Interests
           </h2>
           <div className="flex flex-wrap gap-2">
             {researchInterests.map((item, i) => (
@@ -226,20 +228,20 @@ export default function HomePage() {
         {/* Outside of Research */}
         <Section>
           <h2 className="mb-6 font-sans text-2xl font-bold text-stone-900 dark:text-white">
-            Outside of Research
+            ✨ Outside of Research
           </h2>
           <ul className="space-y-3">
             {personalInterests.map((item, i) => (
               <motion.li
-                key={item}
+                key={item.text}
                 initial={{ opacity: 0, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
                 className="flex items-center gap-3 text-stone-600 dark:text-slate-300"
               >
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-400" />
-                <span>{item}</span>
+                <span className="text-lg leading-none">{item.emoji}</span>
+                <span>{item.text}</span>
               </motion.li>
             ))}
           </ul>

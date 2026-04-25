@@ -6,7 +6,7 @@ import { DecorativeShapes } from '@/components/DecorativeShapes'
 
 const researchPositions = [
   {
-    title: 'Research Assistant — Transformer Models (NLP)',
+    title: 'Research Assistant: Transformer Models (NLP)',
     supervisor: 'Dr. Jian Zhu',
     institution: 'University of British Columbia',
     period: 'Dec 2025 – Present',
@@ -19,7 +19,7 @@ const researchPositions = [
     ],
   },
   {
-    title: 'Research Assistant — Multilingual NLP',
+    title: 'Research Assistant: Multilingual NLP',
     supervisor: 'Dr. Isabel Papadimitriou',
     institution: 'University of British Columbia',
     period: 'Jan 2025 – Present',

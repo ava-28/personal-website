@@ -5,34 +5,72 @@ import { motion } from 'framer-motion'
 import { Card } from '@/components/Card'
 import { DecorativeShapes } from '@/components/DecorativeShapes'
 
-const leadership = {
-  title: 'Founder & President',
-  organization: 'Association for Women in Mathematics (AWM) @ UBC',
-  period: 'Jan 2026 – Present',
-  overview:
-    'I founded and currently lead the undergraduate chapter of the Association for Women in Mathematics at the University of British Columbia with the goal of strengthening engagement, mentorship, and retention within the mathematics community.',
-  focus:
-    'This initiative focuses on building accessible academic and professional support structures for undergraduate students pursuing mathematically intensive disciplines.',
-  initiatives: [
-    'Designed and deployed a data-driven membership intake system to assess student interest, role allocation, and participation patterns',
-    'Structured an operational framework defining executive roles across events, finance, outreach, and technology to ensure scalable organizational growth',
-    'Collaborate with faculty members and the Departmental Equity Committee to align programming with broader educational and inclusion initiatives',
-    'Coordinate technical workshops, mentorship programs, and academic panels aimed at supporting students pursuing research and graduate studies',
-  ],
-  reflection:
-    'Through this work, I am particularly interested in understanding how institutional and community-level infrastructure can influence participation, persistence, and success in mathematically intensive fields.',
-}
+const awmLinks = [
+  {
+    label: 'Instagram',
+    handle: '@awm.ubc',
+    href: 'https://www.instagram.com/awm.ubc',
+    emoji: '📸',
+    color: 'bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200 dark:bg-fuchsia-900/30 dark:text-fuchsia-300 dark:border-fuchsia-700/50',
+  },
+  {
+    label: 'GitHub',
+    handle: 'awmubc',
+    href: 'https://github.com/awmubc',
+    emoji: '💻',
+    color: 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600',
+  },
+]
+
+const accomplishments = [
+  {
+    category: '🏗️ Building the Organization',
+    emoji: '',
+    items: [
+      'Founded the undergraduate AWM chapter at UBC from the ground up, becoming the first such chapter at this institution',
+      'Structured an operational framework with clearly defined executive roles across events, finance, outreach, and technology',
+      'Designed and deployed a data-driven membership intake system to assess student interest, allocate roles, and track participation patterns',
+      'Established AWM UBC on Instagram and GitHub to grow our digital presence and outreach reach',
+    ],
+  },
+  {
+    category: '🤝 Community & Faculty Engagement',
+    emoji: '',
+    items: [
+      'Collaborate directly with faculty members and the Departmental Equity Committee to align our programming with broader inclusion goals',
+      'Coordinate mentorship programs pairing undergraduate students with graduate students and faculty in mathematics and related fields',
+      'Facilitate academic panels and Q&A sessions with researchers to help undergraduates navigate research and graduate school',
+    ],
+  },
+  {
+    category: '🎓 Academic Support & Programming',
+    emoji: '',
+    items: [
+      'Organize technical workshops on topics spanning mathematical methods, research tools, and career development',
+      'Build support structures for students pursuing mathematically intensive disciplines, with a focus on accessibility and retention',
+      'Develop programming aimed at students interested in research, graduate studies, and quantitative careers',
+    ],
+  },
+]
+
+const overview =
+  'I founded and currently lead the undergraduate chapter of the Association for Women in Mathematics at the University of British Columbia, with the goal of strengthening engagement, mentorship, and retention within the mathematics community.'
+
+const reflection =
+  'Through this work, I am particularly interested in understanding how institutional and community-level infrastructure can influence participation, persistence, and success in mathematically intensive fields.'
 
 export default function LeadershipPage() {
   return (
     <div className="relative overflow-hidden">
       <DecorativeShapes />
-      <div className="relative z-10 mx-auto max-w-3xl px-6 pb-20">
+      <div className="relative z-10 mx-auto max-w-3xl px-6 pb-24">
+
+        {/* Page header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-16 pt-12"
+          className="mb-14 pt-12"
         >
           <h1 className="font-sans text-5xl font-black tracking-tight text-stone-900 md:text-7xl dark:text-white">
             Leadership
@@ -42,8 +80,11 @@ export default function LeadershipPage() {
           </p>
         </motion.div>
 
+        {/* Hero card */}
         <Card>
-          <div className="space-y-5">
+          <div className="space-y-6">
+
+            {/* Banner image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -60,42 +101,105 @@ export default function LeadershipPage() {
                 className="object-cover"
               />
             </motion.div>
-            <div>
-              <h2 className="font-sans text-lg font-bold text-stone-900 dark:text-white">
-                {leadership.title}
+
+            {/* Role info */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+            >
+              <h2 className="font-sans text-xl font-bold text-stone-900 dark:text-white">
+                Founder &amp; President
               </h2>
-              <p className="mt-1 text-accent-600 dark:text-accent-400">{leadership.organization}</p>
-              <p className="text-sm text-stone-600 dark:text-slate-400">
-                {leadership.period}
+              <p className="mt-1 font-medium text-accent-600 dark:text-accent-400">
+                Association for Women in Mathematics (AWM) @ UBC
               </p>
-            </div>
-            <p className="text-sm leading-relaxed text-stone-700 dark:text-slate-300">
-              {leadership.overview}
-            </p>
-            <p className="text-sm leading-relaxed text-stone-700 dark:text-slate-300">
-              {leadership.focus}
-            </p>
-            <div>
-              <p className="mb-3 text-sm font-medium text-stone-800 dark:text-slate-200">
-                As part of this effort, I:
+              <p className="text-sm text-stone-500 dark:text-slate-400">
+                Jan 2026 – Present
               </p>
-              <ul className="space-y-2">
-                {leadership.initiatives.map((initiative) => (
-                  <li
-                    key={initiative}
-                    className="flex items-start gap-2 text-stone-700 dark:text-slate-300"
-                  >
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-300" />
-                    <span className="text-sm leading-relaxed">{initiative}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <p className="text-sm leading-relaxed text-stone-700 dark:text-slate-300">
-              {leadership.reflection}
-            </p>
+            </motion.div>
+
+            {/* Overview */}
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.05 }}
+              className="text-sm leading-relaxed text-stone-700 dark:text-slate-300"
+            >
+              {overview}
+            </motion.p>
+
+            {/* AWM links */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="flex flex-wrap gap-2"
+            >
+              {awmLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-all hover:shadow-sm hover:-translate-y-0.5 ${link.color}`}
+                >
+                  <span>{link.emoji}</span>
+                  <span>{link.label}</span>
+                  <span className="opacity-70">{link.handle}</span>
+                </a>
+              ))}
+            </motion.div>
+
           </div>
         </Card>
+
+        {/* Accomplishments */}
+        <div className="mt-10 space-y-8">
+          {accomplishments.map((section, si) => (
+            <motion.div
+              key={section.category}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: si * 0.07 }}
+            >
+              <h3 className="mb-4 font-sans text-base font-bold text-stone-900 dark:text-white">
+                {section.category}
+              </h3>
+              <ul className="space-y-3">
+                {section.items.map((item, ii) => (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, x: -12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.35, delay: si * 0.07 + ii * 0.06 }}
+                    className="flex items-start gap-3 text-stone-700 dark:text-slate-300"
+                  >
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-400" />
+                    <span className="text-sm leading-relaxed">{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Reflection */}
+        <motion.blockquote
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 border-l-2 border-accent-400 pl-5 text-sm italic leading-relaxed text-stone-600 dark:text-slate-400"
+        >
+          {reflection}
+        </motion.blockquote>
+
       </div>
     </div>
   )
