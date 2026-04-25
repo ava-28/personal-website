@@ -1,39 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { MathBackground } from '@/components/MathBackground'
 import { Section } from '@/components/Section'
-
-
-
-const heroTags = [
-  {
-    label: 'ML Research',
-    href: '/research',
-    external: false,
-    color: 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300',
-  },
-  {
-    label: 'UBC Math · 2027',
-    href: '/projects',
-    external: false,
-    color: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300',
-  },
-  {
-    label: 'AWM Founder',
-    href: 'https://awmubc.github.io',
-    external: true,
-    color: 'bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-900/30 dark:text-fuchsia-300',
-  },
-  {
-    label: 'Optimization · Stochastics · NLP',
-    href: '/research',
-    external: false,
-    color: 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300',
-  },
-]
 
 const TAGLINE = 'Mathematics × Machine Learning × UBC'
 
@@ -171,7 +141,7 @@ export default function HomePage() {
 
         {/* About me */}
         <Section className="mb-20">
-          <div className="space-y-3">
+          <div className="space-y-4">
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -192,43 +162,19 @@ export default function HomePage() {
               transition={{ delay: 0.06 }}
               className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
-              My interests span stochastic processes, optimization, and reinforcement learning — with a growing focus on <span className="font-medium text-stone-800 dark:text-slate-200">RL and robotics</span>. I&apos;m also drawn to <span className="font-medium text-stone-800 dark:text-slate-200">quantitative finance</span>: the mathematics of uncertainty, risk, and how rigorous modeling translates into real market decisions. I founded and lead the{' '}
-              <a href="https://awmubc.github.io" target="_blank" rel="noopener noreferrer" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">AWM chapter at UBC</a>
-              .
+              My interests span <span className="font-medium text-stone-800 dark:text-slate-200">NLP</span>, linear algebra, stochastic processes, optimization, and reinforcement learning — with a growing focus on <span className="font-medium text-stone-800 dark:text-slate-200">RL and robotics</span>. I&apos;m also drawn to <span className="font-medium text-stone-800 dark:text-slate-200">quantitative finance</span>: the mathematics of uncertainty, risk, and how rigorous modeling translates into real market decisions.
             </motion.p>
-
-            {/* Identity tags — moved from hero */}
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.12 }}
-              className="flex flex-wrap gap-2 pt-2"
+              className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
-              {heroTags.map((tag, i) => {
-                const pill = (
-                  <motion.span
-                    className={`inline-block rounded-full px-3 py-1 text-xs font-bold cursor-pointer ${tag.color}`}
-                    initial={{ opacity: 0, scale: 0.88 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.15 + i * 0.06, duration: 0.25 }}
-                    whileHover={{ y: -2, transition: { duration: 0.15 } }}
-                  >
-                    {tag.label}
-                  </motion.span>
-                )
-                return tag.external ? (
-                  <a key={tag.label} href={tag.href} target="_blank" rel="noopener noreferrer">
-                    {pill}
-                  </a>
-                ) : (
-                  <Link key={tag.label} href={tag.href}>
-                    {pill}
-                  </Link>
-                )
-              })}
-            </motion.div>
+              My mathematical foundations were sharpened through competitive mathematics — I trained in the olympiad tradition through high school, an experience that deepened my appreciation for proof-based reasoning and the elegance of mathematical structure. Alongside my research, I founded and lead the{' '}
+              <a href="https://awmubc.github.io" target="_blank" rel="noopener noreferrer" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">AWM chapter at UBC</a>
+              {' '}— the first undergraduate chapter of the Association for Women in Mathematics at this institution, with a focus on building community, mentorship, and access for women across the mathematical sciences.
+            </motion.p>
           </div>
         </Section>
 
