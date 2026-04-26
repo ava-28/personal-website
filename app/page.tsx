@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { MathBackground } from '@/components/MathBackground'
 import { Section } from '@/components/Section'
@@ -64,43 +65,69 @@ export default function HomePage() {
             transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
           />
 
-          {/* Greeting */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-            className="text-base font-medium text-stone-500 dark:text-slate-400"
-          >
-            Hey, I&apos;m
-          </motion.p>
+          {/* Hero content: portrait + intro */}
+          <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:gap-10">
 
-          {/* Name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-1 font-sans text-3xl font-semibold tracking-tight md:text-4xl"
-          >
-            <span className="bg-gradient-to-r from-accent-500 via-violet-500 to-indigo-400 bg-clip-text text-transparent dark:from-accent-400 dark:via-violet-400 dark:to-indigo-300">
-              Ava Ahmadi
-            </span>
-          </motion.h1>
+            {/* Portrait */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.55, delay: 0.05 }}
+              className="relative shrink-0"
+            >
+              <div
+                aria-hidden
+                className="absolute -inset-3 -z-10 rounded-full bg-gradient-to-br from-accent-400/40 via-violet-400/30 to-indigo-300/30 blur-2xl dark:from-accent-500/30 dark:via-violet-500/25 dark:to-indigo-400/25"
+              />
+              <Image
+                src="/ava.png"
+                alt="Ava Ahmadi"
+                width={400}
+                height={400}
+                priority
+                className="h-32 w-32 rounded-full object-cover ring-2 ring-white shadow-lg shadow-stone-900/10 dark:ring-slate-700 dark:shadow-black/40 md:h-40 md:w-40"
+              />
+            </motion.div>
 
-          {/* Tagline */}
-          <p className="mt-4 min-h-[1.75rem] text-lg text-stone-600 dark:text-slate-400">
-            {typed}
-            {!typingDone && (
-              <span className="ml-0.5 inline-block h-[1.1em] w-[2px] translate-y-[2px] animate-pulse rounded-sm bg-accent-500 align-middle dark:bg-accent-400" />
-            )}
-          </p>
+            {/* Intro text + social icons */}
+            <div className="min-w-0 flex-1">
+              {/* Greeting */}
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.1 }}
+                className="text-base font-medium text-stone-500 dark:text-slate-400"
+              >
+                Hey, I&apos;m
+              </motion.p>
 
-          {/* Social icon links */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.9 }}
-            className="mt-8 flex items-center gap-3"
-          >
+              {/* Name */}
+              <motion.h1
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="mt-1 font-sans text-3xl font-semibold tracking-tight md:text-4xl"
+              >
+                <span className="bg-gradient-to-r from-accent-500 via-violet-500 to-indigo-400 bg-clip-text text-transparent dark:from-accent-400 dark:via-violet-400 dark:to-indigo-300">
+                  Ava Ahmadi
+                </span>
+              </motion.h1>
+
+              {/* Tagline */}
+              <p className="mt-4 min-h-[1.75rem] text-lg text-stone-600 dark:text-slate-400">
+                {typed}
+                {!typingDone && (
+                  <span className="ml-0.5 inline-block h-[1.1em] w-[2px] translate-y-[2px] animate-pulse rounded-sm bg-accent-500 align-middle dark:bg-accent-400" />
+                )}
+              </p>
+
+              {/* Social icon links */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.9 }}
+                className="mt-8 flex items-center gap-3"
+              >
             {/* GitHub */}
             <a
               href="https://github.com/avaahmadi"
@@ -136,7 +163,9 @@ export default function HomePage() {
                 <path d="M2 7l10 7 10-7" />
               </svg>
             </a>
-          </motion.div>
+              </motion.div>
+            </div>
+          </div>
         </div>
 
         {/* About me */}

@@ -70,7 +70,9 @@ export default function RetrievalPage() {
 
           {/* Presentations */}
           <section>
-            <SectionHeading>Presentations</SectionHeading>
+            <h2 className="mb-5 font-sans text-xl font-bold text-stone-900 dark:text-white">
+              Presentations
+            </h2>
             <motion.div custom={0} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
