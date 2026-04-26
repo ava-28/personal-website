@@ -266,6 +266,136 @@ function PipelineStep({ step, index }: { step: (typeof pipelineSteps)[0]; index:
 }
 
 /* ─────────────────────────────────────────────
+   FURTHER READING — PAPERS
+───────────────────────────────────────────── */
+const furtherReadingPapers = [
+  {
+    title: 'ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT',
+    venue: 'SIGIR 2020 · Khattab & Zaharia',
+    why: 'Introduces the late-interaction paradigm and MaxSim scoring that Reason-ModernColBERT builds directly upon.',
+    abstract: 'https://arxiv.org/abs/2004.12832',
+    sections: [
+      { label: 'Introduction', url: 'https://arxiv.org/pdf/2004.12832#page=1' },
+      { label: 'ColBERT Architecture', url: 'https://arxiv.org/pdf/2004.12832#page=3' },
+      { label: 'Offline Indexing', url: 'https://arxiv.org/pdf/2004.12832#page=4' },
+      { label: 'Experiments', url: 'https://arxiv.org/pdf/2004.12832#page=5' },
+    ],
+  },
+  {
+    title: 'SPLADE: Sparse Lexical and Expansion Model for First Stage Retrieval',
+    venue: 'SIGIR 2021 · Formal et al.',
+    why: 'Defines the SPLADE sparse retrieval model used as first-stage retriever in the Canadian AI 2026 poster work.',
+    abstract: 'https://arxiv.org/abs/2107.05720',
+    sections: [
+      { label: 'Introduction', url: 'https://arxiv.org/pdf/2107.05720#page=1' },
+      { label: 'SPLADE Model', url: 'https://arxiv.org/pdf/2107.05720#page=2' },
+      { label: 'Regularisation', url: 'https://arxiv.org/pdf/2107.05720#page=3' },
+      { label: 'Results', url: 'https://arxiv.org/pdf/2107.05720#page=4' },
+    ],
+  },
+  {
+    title: 'BRIGHT: A Realistic and Challenging Benchmark for Reasoning-Intensive Retrieval',
+    venue: 'arXiv 2024 · Su et al.',
+    why: 'The evaluation benchmark used in the poster — tests retrieval on queries that require real-world reasoning rather than surface-level matching.',
+    abstract: 'https://arxiv.org/abs/2406.07882',
+    sections: [
+      { label: 'Introduction', url: 'https://arxiv.org/pdf/2406.07882#page=1' },
+      { label: 'Benchmark Design', url: 'https://arxiv.org/pdf/2406.07882#page=3' },
+      { label: 'Biology Domain', url: 'https://arxiv.org/pdf/2406.07882#page=5' },
+      { label: 'Baseline Results', url: 'https://arxiv.org/pdf/2406.07882#page=7' },
+    ],
+  },
+  {
+    title: 'ColBERTv2: Effective and Efficient Retrieval via Lightweight Late Interaction',
+    venue: 'NAACL 2022 · Santhanam et al.',
+    why: 'Introduces residual compression and denoised supervision — key components that ModernColBERT inherits.',
+    abstract: 'https://arxiv.org/abs/2112.01488',
+    sections: [
+      { label: 'Introduction', url: 'https://arxiv.org/pdf/2112.01488#page=1' },
+      { label: 'Denoised Supervision', url: 'https://arxiv.org/pdf/2112.01488#page=3' },
+      { label: 'Residual Compression', url: 'https://arxiv.org/pdf/2112.01488#page=4' },
+      { label: 'Experiments', url: 'https://arxiv.org/pdf/2112.01488#page=6' },
+    ],
+  },
+]
+
+function FurtherReading() {
+  const [openIdx, setOpenIdx] = useState<number | null>(null)
+
+  return (
+    <section>
+      <SectionHeading>Further Reading</SectionHeading>
+      <p className="mb-4 text-sm leading-relaxed text-stone-500 dark:text-slate-400">
+        Key papers behind this work — click a paper to jump to specific sections.
+      </p>
+      <div className="space-y-2">
+        {furtherReadingPapers.map((paper, i) => (
+          <div
+            key={paper.title}
+            className="rounded-xl border border-stone-200 bg-white/60 dark:border-slate-700 dark:bg-slate-800/60 overflow-hidden"
+          >
+            {/* Header row */}
+            <button
+              onClick={() => setOpenIdx(openIdx === i ? null : i)}
+              className="flex w-full items-start justify-between gap-3 p-4 text-left"
+            >
+              <div>
+                <p className="text-sm font-bold text-stone-900 dark:text-slate-100 leading-snug">
+                  {paper.title}
+                </p>
+                <p className="mt-0.5 text-xs text-stone-400 dark:text-slate-500">{paper.venue}</p>
+              </div>
+              <span className="mt-0.5 shrink-0 text-stone-400 dark:text-slate-500 text-xs select-none">
+                {openIdx === i ? '▲' : '▼'}
+              </span>
+            </button>
+
+            <AnimatePresence initial={false}>
+              {openIdx === i && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.22 }}
+                  className="overflow-hidden"
+                >
+                  <div className="border-t border-stone-100 px-4 pb-4 pt-3 dark:border-slate-700/60">
+                    <p className="mb-3 text-xs leading-relaxed text-stone-500 dark:text-slate-400">
+                      {paper.why}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <a
+                        href={paper.abstract}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-full bg-accent-600 px-3 py-1 text-xs font-bold text-white hover:bg-accent-700 dark:bg-accent-500 dark:hover:bg-accent-400 transition-colors"
+                      >
+                        Abstract
+                      </a>
+                      {paper.sections.map((s) => (
+                        <a
+                          key={s.label}
+                          href={s.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-600 hover:bg-stone-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600 transition-colors"
+                        >
+                          {s.label} ↗
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+/* ─────────────────────────────────────────────
    MAXSIM VISUALISATION
 ───────────────────────────────────────────── */
 function MaxSimViz() {
@@ -455,6 +585,58 @@ function RetrievalContent() {
         </div>
       </section>
 
+      {/* Further Reading */}
+      <FurtherReading />
+
+      {/* Presentations */}
+      <section>
+        <SectionHeading>Presentations</SectionHeading>
+        <motion.div
+          custom={0}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="rounded-xl border border-stone-200 bg-white/60 p-6 dark:border-slate-700 dark:bg-slate-800/60"
+        >
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="font-sans text-sm font-bold text-stone-900 dark:text-slate-100">
+                Sparse-to-Dense Retrieval on BRIGHT: SPLADE Retrieval with ColBERT Reranking
+              </p>
+              <p className="mt-1 text-sm text-accent-600 dark:text-accent-400">
+                Canadian AI 2026 · Responsible AI Track · Poster / 3MT
+              </p>
+            </div>
+            <div className="flex flex-col items-end gap-1.5 shrink-0">
+              <span className="rounded-full bg-accent-100 px-3 py-1 text-xs font-bold text-accent-700 dark:bg-accent-900/40 dark:text-accent-300">
+                NSERC CREATE Scholarship
+              </span>
+              <span className="text-xs text-stone-400 dark:text-slate-500">May 2026</span>
+            </div>
+          </div>
+          <div className="my-4 border-t border-stone-100 dark:border-slate-700/60" />
+          <p className="text-sm leading-relaxed text-stone-600 dark:text-slate-300">
+            This work evaluates a sparse-to-dense retrieval pipeline on the BRIGHT benchmark, a challenging
+            reasoning-intensive retrieval dataset. We use SPLADE as a first-stage retriever over the biology domain,
+            followed by ColBERT as a late-interaction reranker. Our work reproduces and stress-tests this pipeline
+            under realistic evaluation conditions, examining where sparse retrieval succeeds and where denser
+            reranking is necessary to close the performance gap. The study contributes a reproducibility perspective
+            on the interaction between sparse and dense retrieval in complex, knowledge-intensive tasks.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {['SPLADE', 'ColBERT', 'BRIGHT Benchmark', 'Sparse-to-Dense', 'Reranking', 'Reproducibility'].map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-stone-100 px-2.5 py-0.5 text-xs font-medium text-stone-500 dark:bg-slate-800 dark:text-slate-400"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
     </div>
   )
 }
@@ -629,65 +811,6 @@ export default function ResearchPage() {
             {activeTab === 'retrieval' ? <RetrievalContent /> : <MultilingualContent />}
           </motion.div>
         </AnimatePresence>
-
-        {/* Presentations */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-20"
-        >
-          <h2 className="mb-6 font-sans text-xl font-bold text-stone-900 dark:text-white">
-            Presentations
-          </h2>
-
-          <div className="rounded-xl border border-stone-200 bg-white/60 p-6 dark:border-slate-700 dark:bg-slate-800/60">
-            {/* Header row */}
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div>
-                <p className="font-sans text-sm font-bold text-stone-900 dark:text-slate-100">
-                  Sparse-to-Dense Retrieval on BRIGHT: SPLADE Retrieval with ColBERT Reranking
-                </p>
-                <p className="mt-1 text-sm text-accent-600 dark:text-accent-400">
-                  Canadian AI 2026 · Responsible AI Track · Poster / 3MT
-                </p>
-              </div>
-              <div className="flex flex-col items-end gap-1.5 shrink-0">
-                <span className="rounded-full bg-accent-100 px-3 py-1 text-xs font-bold text-accent-700 dark:bg-accent-900/40 dark:text-accent-300">
-                  NSERC CREATE Scholarship
-                </span>
-                <span className="text-xs text-stone-400 dark:text-slate-500">May 2026</span>
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div className="my-4 border-t border-stone-100 dark:border-slate-700/60" />
-
-            {/* Abstract */}
-            <p className="text-sm leading-relaxed text-stone-600 dark:text-slate-300">
-              This work evaluates a sparse-to-dense retrieval pipeline on the BRIGHT benchmark, a challenging
-              reasoning-intensive retrieval dataset. We use SPLADE, a learned sparse retrieval model, as a first-stage
-              retriever over the biology domain, followed by ColBERT as a late-interaction reranker. Our work
-              reproduces and stress-tests this pipeline under realistic evaluation conditions, examining where sparse
-              retrieval succeeds and where denser reranking is necessary to close the performance gap. The study
-              contributes a reproducibility perspective on the interaction between sparse and dense retrieval in
-              complex, knowledge-intensive tasks.
-            </p>
-
-            {/* Tags */}
-            <div className="mt-4 flex flex-wrap gap-2">
-              {['SPLADE', 'ColBERT', 'BRIGHT Benchmark', 'Sparse-to-Dense', 'Reranking', 'Reproducibility'].map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-stone-100 px-2.5 py-0.5 text-xs font-medium text-stone-500 dark:bg-slate-800 dark:text-slate-400"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
 
       </div>
     </div>
