@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Card } from '@/components/Card'
 
 /* ─── animation ─── */
@@ -466,6 +467,24 @@ export default function RetrievalPage() {
                 reranking is necessary to close the performance gap. The study contributes a reproducibility perspective
                 on the interaction between sparse and dense retrieval in complex, knowledge-intensive tasks.
               </p>
+
+              {/* Result figure: ColBERT MaxSim heatmap */}
+              <figure className="mt-5 overflow-hidden rounded-lg border border-stone-200 bg-white dark:border-slate-700 dark:bg-slate-900">
+                <Image
+                  src="/colbert-heatmap.png"
+                  alt="ColBERT MaxSim heatmap showing token-level similarity between a BRIGHT biology query and an irrelevant document, with red dots marking the per-query-token argmax."
+                  width={1600}
+                  height={820}
+                  className="h-auto w-full"
+                />
+                <figcaption className="border-t border-stone-100 px-4 py-2 text-xs leading-relaxed text-stone-500 dark:border-slate-700/60 dark:text-slate-400">
+                  ColBERT MaxSim heatmap on a BRIGHT biology query (id 5) against an irrelevant document.
+                  Rows are query tokens, columns are document tokens; brighter cells indicate higher dot-product
+                  similarity, and red dots mark each query token&apos;s argmax — the per-token contribution that
+                  MaxSim sums to produce the final relevance score.
+                </figcaption>
+              </figure>
+
               <div className="mt-4 flex flex-wrap gap-2">
                 {['SPLADE', 'ColBERT', 'BRIGHT Benchmark', 'Sparse-to-Dense', 'Reranking', 'Reproducibility'].map((tag) => (
                   <span key={tag} className="rounded-full bg-stone-100 px-2.5 py-0.5 text-xs font-medium text-stone-500 dark:bg-slate-800 dark:text-slate-400">

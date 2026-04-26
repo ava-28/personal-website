@@ -12,8 +12,10 @@ const researchAreas = [
     description:
       'Investigating how reasoning integrates into late-interaction retrieval models, building on the ColBERT family of architectures to improve performance on complex, reasoning-intensive queries.',
     badge: 'NSERC CREATE Scholarship',
+    presentation: 'Canadian AI 2026 · Responsible AI Track · Poster / 3MT',
     tags: ['ColBERT', 'SPLADE', 'Neural IR', 'BRIGHT'],
     sections: ['Background', 'MaxSim Operation', 'Reason-ModernColBERT', 'Pipeline', 'Further Reading', 'Presentations'],
+    bannerImage: '/colbert-heatmap.png',
     gradientFrom: 'from-violet-400/30',
     gradientVia: 'via-fuchsia-400/20',
     gradientTo: 'to-indigo-400/25',
@@ -28,8 +30,10 @@ const researchAreas = [
     description:
       'Studying how multilingual transformers represent and align linguistic structure across languages — and what drives cross-lingual generalisation in models like mBERT and XLM-R.',
     badge: null,
+    presentation: null,
     tags: ['mBERT', 'XLM-R', 'CKA', 'Probing', 'Cross-lingual Transfer'],
     sections: ['Background', 'Research Questions', 'Pipeline'],
+    bannerImage: null,
     gradientFrom: 'from-indigo-400/30',
     gradientVia: 'via-sky-400/20',
     gradientTo: 'to-emerald-400/25',
@@ -71,19 +75,32 @@ export default function ResearchPage() {
                 <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white/60 transition-all hover:border-accent-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800/60 dark:hover:border-accent-600">
 
                   {/* Visual banner */}
-                  <div className={`relative h-40 bg-gradient-to-br ${area.gradientFrom} ${area.gradientVia} ${area.gradientTo} overflow-hidden`}>
-                    {/* Floating terms */}
-                    <div className="absolute inset-0 flex flex-wrap items-center justify-around gap-x-6 gap-y-3 px-8 py-6 select-none">
-                      {area.terms.map((term, ti) => (
-                        <span
-                          key={term}
-                          className={`font-mono text-sm font-bold ${area.termColor}`}
-                          style={{ transform: `rotate(${(ti % 3 - 1) * 4}deg)` }}
-                        >
-                          {term}
-                        </span>
-                      ))}
-                    </div>
+                  <div className={`relative h-40 overflow-hidden ${area.bannerImage ? '' : `bg-gradient-to-br ${area.gradientFrom} ${area.gradientVia} ${area.gradientTo}`}`}>
+                    {area.bannerImage ? (
+                      <>
+                        {/* Heatmap image */}
+                        <img
+                          src={area.bannerImage}
+                          alt="ColBERT MaxSim similarity heatmap"
+                          className="absolute inset-0 h-full w-full object-cover object-center"
+                        />
+                        {/* Subtle dark overlay so the arrow stays visible */}
+                        <div className="absolute inset-0 bg-black/20" />
+                      </>
+                    ) : (
+                      /* Floating terms (gradient cards only) */
+                      <div className="absolute inset-0 flex flex-wrap items-center justify-around gap-x-6 gap-y-3 px-8 py-6 select-none">
+                        {area.terms.map((term, ti) => (
+                          <span
+                            key={term}
+                            className={`font-mono text-sm font-bold ${area.termColor}`}
+                            style={{ transform: `rotate(${(ti % 3 - 1) * 4}deg)` }}
+                          >
+                            {term}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     {/* Arrow hint */}
                     <div className="absolute bottom-4 right-5 flex h-8 w-8 items-center justify-center rounded-full bg-white/30 text-white backdrop-blur-sm transition-all group-hover:bg-accent-600/80 group-hover:scale-110">
                       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
@@ -102,6 +119,11 @@ export default function ResearchPage() {
                         <p className="mt-0.5 text-sm text-accent-600 dark:text-accent-400">
                           {area.supervisor} · UBC · {area.period}
                         </p>
+                        {area.presentation && (
+                          <p className="mt-1 text-xs text-stone-400 dark:text-slate-500">
+                            {area.presentation}
+                          </p>
+                        )}
                       </div>
                       {area.badge && (
                         <span className="shrink-0 rounded-full bg-accent-100 px-3 py-1 text-xs font-bold text-accent-700 dark:bg-accent-900/40 dark:text-accent-300">
