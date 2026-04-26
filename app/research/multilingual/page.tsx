@@ -166,6 +166,117 @@ function PipelineStep({ step, index, total }: { step: typeof pipelineSteps[0]; i
   )
 }
 
+/* ─── architecture diagram ─── */
+function ModelArchDiagram() {
+  // Column x-centers (shared by attention lines, layer sub-rects, and circles)
+  const colXs = [71, 130, 189, 249]
+
+  // Input token positions (6 tokens, evenly spaced, aligned with layer width)
+  const tokenLefts   = [40,  82, 124, 166, 208, 250]
+  const tokenCenters = [55,  97, 139, 181, 223, 265]
+  const tokenW = 30, tokenH = 26, tokenY = 297
+
+  // Transformer layer rectangles
+  const upperLayer = { x: 28, y: 120, w: 264, h: 46 }
+  const lowerLayer = { x: 28, y: 210, w: 264, h: 46 }
+
+  // Sub-rect left edges inside each layer (centered on colXs, width=45)
+  const subRectLefts = colXs.map(cx => cx - 22)
+  const subRectW = 44, subRectH = 40
+
+  // Circle geometry
+  const circleY = 82, circleR = 20
+
+  const models = [
+    {
+      ox: 10, label: 'mBERT',
+      boxFill: '#EFF6FF', boxStroke: '#93C5FD',
+      circleFill: '#BFDBFE', circleStroke: '#60A5FA',
+      layerBg: '#DBEAFE', layerFill: '#BFDBFE', layerStroke: '#93C5FD',
+      tokenFill: '#DBEAFE', titleFill: '#1E3A5F',
+    },
+    {
+      ox: 415, label: 'XLM-R',
+      boxFill: '#F0FDF4', boxStroke: '#86EFAC',
+      circleFill: '#BBF7D0', circleStroke: '#4ADE80',
+      layerBg: '#DCFCE7', layerFill: '#BBF7D0', layerStroke: '#86EFAC',
+      tokenFill: '#DCFCE7', titleFill: '#14532D',
+    },
+  ]
+
+  return (
+    <svg viewBox="0 0 745 370" xmlns="http://www.w3.org/2000/svg" className="w-full">
+      {/* Separator */}
+      <text x="372" y="195" textAnchor="middle" fontSize="20" fill="#94A3B8" letterSpacing="6">•••</text>
+
+      {models.map((m) => (
+        <g key={m.label} transform={`translate(${m.ox}, 9)`}>
+          {/* Outer box */}
+          <rect x={0} y={0} width={320} height={352} rx={14}
+            fill={m.boxFill} stroke={m.boxStroke} strokeWidth={1.5} />
+
+          {/* Title */}
+          <text x={160} y={43} textAnchor="middle"
+            fontFamily="system-ui,sans-serif" fontWeight="700" fontSize="18" fill={m.titleFill}>
+            {m.label}
+          </text>
+
+          {/* Attention lines: circle bottoms → upper layer top */}
+          {colXs.flatMap(from => colXs.map(to => (
+            <line key={`cu-${from}-${to}`}
+              x1={from} y1={circleY + circleR} x2={to} y2={upperLayer.y}
+              stroke="#334155" strokeWidth={0.55} opacity={0.2} />
+          )))}
+
+          {/* Output circles (drawn after lines so they appear on top) */}
+          {colXs.map((cx, i) => (
+            <circle key={i} cx={cx} cy={circleY} r={circleR}
+              fill={m.circleFill} stroke={m.circleStroke} strokeWidth={1.5} />
+          ))}
+
+          {/* Upper layer background */}
+          <rect x={upperLayer.x} y={upperLayer.y} width={upperLayer.w} height={upperLayer.h}
+            rx={5} fill={m.layerBg} stroke={m.layerStroke} strokeWidth={0.6} />
+          {/* Upper layer sub-rects */}
+          {subRectLefts.map((sx, i) => (
+            <rect key={i} x={sx} y={upperLayer.y + 3} width={subRectW} height={subRectH}
+              rx={4} fill={m.layerFill} stroke={m.layerStroke} strokeWidth={0.8} />
+          ))}
+
+          {/* Attention lines: upper layer bottom → lower layer top */}
+          {colXs.flatMap(from => colXs.map(to => (
+            <line key={`ul-${from}-${to}`}
+              x1={from} y1={upperLayer.y + upperLayer.h} x2={to} y2={lowerLayer.y}
+              stroke="#334155" strokeWidth={0.55} opacity={0.2} />
+          )))}
+
+          {/* Lower layer background */}
+          <rect x={lowerLayer.x} y={lowerLayer.y} width={lowerLayer.w} height={lowerLayer.h}
+            rx={5} fill={m.layerBg} stroke={m.layerStroke} strokeWidth={0.6} />
+          {/* Lower layer sub-rects */}
+          {subRectLefts.map((sx, i) => (
+            <rect key={i} x={sx} y={lowerLayer.y + 3} width={subRectW} height={subRectH}
+              rx={4} fill={m.layerFill} stroke={m.layerStroke} strokeWidth={0.8} />
+          ))}
+
+          {/* Attention lines: lower layer bottom → token tops */}
+          {colXs.flatMap(from => tokenCenters.map(to => (
+            <line key={`lt-${from}-${to}`}
+              x1={from} y1={lowerLayer.y + lowerLayer.h} x2={to} y2={tokenY}
+              stroke="#334155" strokeWidth={0.55} opacity={0.2} />
+          )))}
+
+          {/* Input token boxes */}
+          {tokenLefts.map((tx, i) => (
+            <rect key={i} x={tx} y={tokenY} width={tokenW} height={tokenH}
+              rx={4} fill={m.tokenFill} stroke={m.layerStroke} strokeWidth={0.8} />
+          ))}
+        </g>
+      ))}
+    </svg>
+  )
+}
+
 /* ─── page ─── */
 export default function MultilingualPage() {
   return (
@@ -219,6 +330,16 @@ export default function MultilingualPage() {
                 </div>
               </div>
             </Card>
+          </motion.div>
+
+          {/* Architecture diagram */}
+          <motion.div custom={0.5} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <figure className="overflow-hidden rounded-xl border border-stone-200 bg-white p-4 dark:border-slate-700">
+              <ModelArchDiagram />
+              <figcaption className="mt-2 text-center text-xs text-stone-400 dark:text-slate-500">
+                mBERT and XLM-R transformer architectures — input tokens (bottom) flow through stacked self-attention layers to produce contextual token representations (top).
+              </figcaption>
+            </figure>
           </motion.div>
 
           {/* Background */}
