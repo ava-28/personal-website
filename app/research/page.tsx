@@ -3,6 +3,97 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
+/* ─── Inline SVG banner for the multilingual card ─── */
+function MultilingualBanner() {
+  const colXs = [71, 130, 189, 249]
+  const tokenLefts   = [40,  82, 124, 166, 208, 250]
+  const tokenCenters = [55,  97, 139, 181, 223, 265]
+  const tokenW = 30, tokenH = 22, tokenY = 270
+
+  const upperLayer = { x: 28, y: 108, w: 264, h: 40 }
+  const lowerLayer = { x: 28, y: 190, w: 264, h: 40 }
+  const subRectLefts = colXs.map(cx => cx - 22)
+  const subRectW = 44, subRectH = 34
+
+  const circleY = 72, circleR = 18
+
+  const models = [
+    {
+      ox: 10, label: 'mBERT',
+      boxFill: '#EFF6FF', boxStroke: '#93C5FD',
+      circleFill: '#BFDBFE', circleStroke: '#60A5FA',
+      layerBg: '#DBEAFE', layerFill: '#BFDBFE', layerStroke: '#93C5FD',
+      tokenFill: '#DBEAFE', titleFill: '#1E3A5F',
+    },
+    {
+      ox: 415, label: 'XLM-R',
+      boxFill: '#F0FDF4', boxStroke: '#86EFAC',
+      circleFill: '#BBF7D0', circleStroke: '#4ADE80',
+      layerBg: '#DCFCE7', layerFill: '#BBF7D0', layerStroke: '#86EFAC',
+      tokenFill: '#DCFCE7', titleFill: '#14532D',
+    },
+  ]
+
+  return (
+    <svg viewBox="0 0 745 318" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
+      <text x="372" y="162" textAnchor="middle" fontSize="18" fill="#94A3B8" letterSpacing="6">•••</text>
+      {models.map((m) => (
+        <g key={m.label} transform={`translate(${m.ox}, 8)`}>
+          <rect x={0} y={0} width={320} height={302} rx={14}
+            fill={m.boxFill} stroke={m.boxStroke} strokeWidth={1.5} />
+          <text x={160} y={38} textAnchor="middle"
+            fontFamily="system-ui,sans-serif" fontWeight="700" fontSize="16" fill={m.titleFill}>
+            {m.label}
+          </text>
+          {/* Lines: circles → upper layer */}
+          {colXs.flatMap(from => colXs.map(to => (
+            <line key={`cu-${from}-${to}`}
+              x1={from} y1={circleY + circleR} x2={to} y2={upperLayer.y}
+              stroke="#334155" strokeWidth={0.5} opacity={0.18} />
+          )))}
+          {/* Circles */}
+          {colXs.map((cx, i) => (
+            <circle key={i} cx={cx} cy={circleY} r={circleR}
+              fill={m.circleFill} stroke={m.circleStroke} strokeWidth={1.5} />
+          ))}
+          {/* Upper layer */}
+          <rect x={upperLayer.x} y={upperLayer.y} width={upperLayer.w} height={upperLayer.h}
+            rx={4} fill={m.layerBg} stroke={m.layerStroke} strokeWidth={0.6} />
+          {subRectLefts.map((sx, i) => (
+            <rect key={i} x={sx} y={upperLayer.y + 3} width={subRectW} height={subRectH}
+              rx={4} fill={m.layerFill} stroke={m.layerStroke} strokeWidth={0.8} />
+          ))}
+          {/* Lines: upper → lower layer */}
+          {colXs.flatMap(from => colXs.map(to => (
+            <line key={`ul-${from}-${to}`}
+              x1={from} y1={upperLayer.y + upperLayer.h} x2={to} y2={lowerLayer.y}
+              stroke="#334155" strokeWidth={0.5} opacity={0.18} />
+          )))}
+          {/* Lower layer */}
+          <rect x={lowerLayer.x} y={lowerLayer.y} width={lowerLayer.w} height={lowerLayer.h}
+            rx={4} fill={m.layerBg} stroke={m.layerStroke} strokeWidth={0.6} />
+          {subRectLefts.map((sx, i) => (
+            <rect key={i} x={sx} y={lowerLayer.y + 3} width={subRectW} height={subRectH}
+              rx={4} fill={m.layerFill} stroke={m.layerStroke} strokeWidth={0.8} />
+          ))}
+          {/* Lines: lower layer → tokens */}
+          {colXs.flatMap(from => tokenCenters.map(to => (
+            <line key={`lt-${from}-${to}`}
+              x1={from} y1={lowerLayer.y + lowerLayer.h} x2={to} y2={tokenY}
+              stroke="#334155" strokeWidth={0.5} opacity={0.18} />
+          )))}
+          {/* Input tokens */}
+          {tokenLefts.map((tx, i) => (
+            <rect key={i} x={tx} y={tokenY} width={tokenW} height={tokenH}
+              rx={3} fill={m.tokenFill} stroke={m.layerStroke} strokeWidth={0.8} />
+          ))}
+        </g>
+      ))}
+    </svg>
+  )
+}
+
+/* ─── data ─── */
 const researchAreas = [
   {
     href: '/research/retrieval',
@@ -13,9 +104,9 @@ const researchAreas = [
       'Investigating how reasoning integrates into late-interaction retrieval models, building on the ColBERT family of architectures to improve performance on complex, reasoning-intensive queries.',
     badge: 'NSERC CREATE Scholarship',
     presentation: 'Canadian AI 2026 · Responsible AI Track · Poster / 3MT',
-    tags: ['ColBERT', 'SPLADE', 'Neural IR', 'BRIGHT'],
-    sections: ['Background', 'MaxSim Operation', 'Reason-ModernColBERT', 'Pipeline', 'Further Reading', 'Presentations'],
+    sections: [] as string[],
     bannerImage: '/colbert-heatmap.png',
+    bannerSvg: false,
     gradientFrom: 'from-violet-400/30',
     gradientVia: 'via-fuchsia-400/20',
     gradientTo: 'to-indigo-400/25',
@@ -31,9 +122,9 @@ const researchAreas = [
       'Studying how multilingual transformers represent and align linguistic structure across languages — and what drives cross-lingual generalisation in models like mBERT and XLM-R.',
     badge: null,
     presentation: null,
-    tags: ['mBERT', 'XLM-R', 'CKA', 'Probing', 'Cross-lingual Transfer'],
-    sections: ['Background', 'Research Questions', 'Pipeline'],
+    sections: [] as string[],
     bannerImage: null,
+    bannerSvg: true,
     gradientFrom: 'from-indigo-400/30',
     gradientVia: 'via-sky-400/20',
     gradientTo: 'to-emerald-400/25',
@@ -75,20 +166,21 @@ export default function ResearchPage() {
                 <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white/60 transition-all hover:border-accent-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800/60 dark:hover:border-accent-600">
 
                   {/* Visual banner */}
-                  <div className={`relative h-40 overflow-hidden ${area.bannerImage ? '' : `bg-gradient-to-br ${area.gradientFrom} ${area.gradientVia} ${area.gradientTo}`}`}>
+                  <div className={`relative h-40 overflow-hidden ${(!area.bannerImage && !area.bannerSvg) ? `bg-gradient-to-br ${area.gradientFrom} ${area.gradientVia} ${area.gradientTo}` : 'bg-white'}`}>
                     {area.bannerImage ? (
                       <>
-                        {/* Heatmap image */}
                         <img
                           src={area.bannerImage}
-                          alt="ColBERT MaxSim similarity heatmap"
+                          alt={`${area.title} research visualization`}
                           className="absolute inset-0 h-full w-full object-cover object-center"
                         />
-                        {/* Subtle dark overlay so the arrow stays visible */}
                         <div className="absolute inset-0 bg-black/20" />
                       </>
+                    ) : area.bannerSvg ? (
+                      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                        <MultilingualBanner />
+                      </div>
                     ) : (
-                      /* Floating terms (gradient cards only) */
                       <div className="absolute inset-0 flex flex-wrap items-center justify-around gap-x-6 gap-y-3 px-8 py-6 select-none">
                         {area.terms.map((term, ti) => (
                           <span
@@ -136,17 +228,19 @@ export default function ResearchPage() {
                       {area.description}
                     </p>
 
-                    {/* Section preview */}
-                    <div className="mt-4 flex flex-wrap gap-1.5">
-                      {area.sections.map((s) => (
-                        <span
-                          key={s}
-                          className="rounded-full bg-stone-100 px-2.5 py-0.5 text-xs font-medium text-stone-500 dark:bg-slate-800 dark:text-slate-400"
-                        >
-                          {s}
-                        </span>
-                      ))}
-                    </div>
+                    {/* Section pills — only shown when non-empty */}
+                    {area.sections.length > 0 && (
+                      <div className="mt-4 flex flex-wrap gap-1.5">
+                        {area.sections.map((s) => (
+                          <span
+                            key={s}
+                            className="rounded-full bg-stone-100 px-2.5 py-0.5 text-xs font-medium text-stone-500 dark:bg-slate-800 dark:text-slate-400"
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                 </div>
