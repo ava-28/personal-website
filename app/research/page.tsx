@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Card } from '@/components/Card'
 
@@ -757,6 +757,19 @@ function MultilingualContent() {
 export default function ResearchPage() {
   const [activeTab, setActiveTab] = useState<'retrieval' | 'multilingual'>('retrieval')
 
+  // Read hash on mount to deep-link into the right tab
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '')
+    if (hash === 'retrieval' || hash === 'multilingual') {
+      setActiveTab(hash)
+    }
+  }, [])
+
+  function switchTab(id: 'retrieval' | 'multilingual') {
+    setActiveTab(id)
+    window.history.replaceState(null, '', `#${id}`)
+  }
+
   return (
     <div className="relative overflow-hidden">
       <div className="relative z-10 mx-auto max-w-3xl px-6 pb-24">
@@ -786,7 +799,7 @@ export default function ResearchPage() {
           {TABS.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as 'retrieval' | 'multilingual')}
+              onClick={() => switchTab(tab.id as 'retrieval' | 'multilingual')}
               className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
                 activeTab === tab.id
                   ? 'bg-accent-600 text-white shadow-sm dark:bg-accent-500'

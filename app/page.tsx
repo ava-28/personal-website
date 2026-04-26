@@ -150,9 +150,9 @@ export default function HomePage() {
               className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
               I&apos;m a Mathematics undergraduate at UBC (BSc, expected 2027), working on transformer-based retrieval with{' '}
-              <a href="/research" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">Dr. Jian Zhu</a>
+              <a href="/research#retrieval" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">Dr. Jian Zhu</a>
               , specifically on Reason-ModernColBERT and neural retrieval systems, and on multilingual transformer mapping and cross-lingual representation alignment with{' '}
-              <a href="/research" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">Dr. Isabel Papadimitriou</a>
+              <a href="/research#multilingual" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">Dr. Isabel Papadimitriou</a>
               , both at UBC.
             </motion.p>
             <motion.p
