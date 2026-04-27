@@ -50,10 +50,10 @@ const accomplishments = [
 ]
 
 const overview =
-  'I founded and currently lead the undergraduate chapter of the Association for Women in Mathematics at the University of British Columbia, with the goal of strengthening engagement, mentorship, and retention within the mathematics community.'
+  'I founded AWM at UBC in January 2026 because I believe mathematics is more powerful when the room includes everyone capable of doing it. Starting from nothing, I built an organization with a full executive team spanning communications, events, finance, mentorship, external relations, and technology, and secured institutional backing from the UBC Mathematics Department and the Pacific Institute for the Mathematical Sciences. I lead this chapter the same way I approach my research: with precision, intention, and a long view.'
 
 const reflection =
-  'Through this work, I am particularly interested in understanding how institutional and community-level infrastructure can influence participation, persistence, and success in mathematically intensive fields.'
+  'Mathematics gave me a language for the world. AWM at UBC is my way of making sure more women get to speak it.'
 
 export default function LeadershipPage() {
   return (
