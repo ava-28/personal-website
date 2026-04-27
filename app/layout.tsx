@@ -93,6 +93,39 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${openSans.variable} ${playfair.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Ava Ahmadi',
+              url: 'https://avaahmadi.com',
+              image: 'https://avaahmadi.com/ava.png',
+              jobTitle: 'Mathematics Undergraduate Researcher',
+              worksFor: {
+                '@type': 'Organization',
+                name: 'University of British Columbia',
+              },
+              alumniOf: {
+                '@type': 'Organization',
+                name: 'University of British Columbia',
+              },
+              sameAs: [
+                'https://github.com/avaahmadi',
+                'https://www.linkedin.com/in/ava-ahmadi1228',
+              ],
+              knowsAbout: [
+                'Mathematics',
+                'Machine Learning',
+                'Natural Language Processing',
+                'Transformer-Based Retrieval',
+                'Reinforcement Learning',
+                'Responsible AI',
+              ],
+            }),
+          }}
+        />
       </head>
       <body className="min-h-screen flex flex-col">
         <Navigation />
