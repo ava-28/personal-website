@@ -18,8 +18,9 @@ const projects: Project[] = [
     title: 'News-Driven Reinforcement Learning Trading Agent',
     subtitle: 'Python · PyTorch · Finnhub API · yfinance',
     visual: 'dqn',
+    images: ['/rl-equity-curves.png'],
     description:
-      'A DQN-based trading agent targeting AAPL equity that frames trading as a sequential decision problem. The agent combines NLP-derived financial news sentiment from the Finnhub API with historical price data via yfinance as a joint state representation, training a Deep Q-Network with experience replay and target network stabilization to learn adaptive buy, hold, and sell strategies.',
+      'A research-grade reinforcement learning system that trains a PPO agent to trade a 7-asset portfolio across tech, finance, energy, and ETF markets, combining NLP-driven sentiment analysis with rigorous walk-forward validation, multi-seed testing, and ablation studies to ensure scientific robustness and generalizability.',
   },
   {
     title: 'Monte Carlo Simulation for Financial Derivatives Pricing',
