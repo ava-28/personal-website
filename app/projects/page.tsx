@@ -32,6 +32,7 @@ const projects: Project[] = [
   {
     title: 'Reinforcement Learning Agent – Gridworld (PyTorch)',
     visual: 'gridworld',
+    images: ['/gridworld-path.png'],
     description:
       'A tabular Q-learning agent implemented in PyTorch, trained on a Gridworld environment using Bellman optimality equations. The project explores policy learning under varying learning rates, evaluates performance via empirical return distributions, and includes hyperparameter sensitivity analysis.',
   },
