@@ -9,7 +9,7 @@ interface Project {
   title: string
   subtitle?: string
   visual: ProjectVisualKind
-  image?: string
+  images?: string[]
   description: string
 }
 
@@ -36,7 +36,7 @@ const projects: Project[] = [
   {
     title: 'Hydroelectric Power Plant Feasibility Study',
     visual: 'hydro',
-    image: '/hydro-dam.jpg',
+    images: ['/hydro-dam.jpg', '/hydro-spillway.jpg'],
     description:
       'A quantitative feasibility study modeling hydroelectric output under stochastic river-flow dynamics using flow-duration curves and HYDAT data. The analysis includes scenario and sensitivity analysis, tail-risk evaluation, and assessment of long-run economic viability.',
   },
@@ -64,14 +64,21 @@ export default function ProjectsPage() {
           {projects.map((project) => (
             <Card key={project.title}>
               <div className="space-y-4">
-                {project.image ? (
-                  <motion.div className="mb-4 overflow-hidden rounded-lg border border-accent-100 bg-white dark:border-slate-700 dark:bg-slate-800">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="h-44 w-full object-cover"
-                    />
-                  </motion.div>
+                {project.images && project.images.length > 0 ? (
+                  <div className="mb-4 space-y-3">
+                    {project.images.map((src) => (
+                      <motion.div
+                        key={src}
+                        className="overflow-hidden rounded-lg border border-accent-100 bg-white dark:border-slate-700 dark:bg-slate-800"
+                      >
+                        <img
+                          src={src}
+                          alt={project.title}
+                          className="h-44 w-full object-cover"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
                 ) : (
                   <ProjectVisual kind={project.visual} />
                 )}
