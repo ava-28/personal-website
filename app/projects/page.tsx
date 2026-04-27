@@ -39,7 +39,7 @@ const projects: Project[] = [
   {
     title: 'Hydroelectric Power Plant Feasibility Study',
     visual: 'hydro',
-    images: ['/hydro-dam.jpg', '/hydro-spillway.jpg'],
+    images: ['/hydro-spillway.jpg'],
     description:
       'A quantitative feasibility study modeling hydroelectric output under stochastic river-flow dynamics using flow-duration curves and HYDAT data. The analysis includes scenario and sensitivity analysis, tail-risk evaluation, and assessment of long-run economic viability.',
   },
@@ -63,12 +63,12 @@ export default function ProjectsPage() {
           </p>
         </motion.div>
 
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {projects.map((project) => (
             <Card key={project.title}>
               <div className="space-y-4">
                 {project.images && project.images.length > 0 ? (
-                  <div className="mb-4 space-y-3">
+                  <div className="mb-2">
                     {project.images.map((src) => (
                       <motion.div
                         key={src}
@@ -77,7 +77,7 @@ export default function ProjectsPage() {
                         <img
                           src={src}
                           alt={project.title}
-                          className="h-44 w-full object-cover"
+                          className="h-36 w-full object-cover"
                         />
                       </motion.div>
                     ))}

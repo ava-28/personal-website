@@ -276,7 +276,7 @@ export function ProjectVisual({ kind }: ProjectVisualProps) {
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="h-44 w-full">
+      <div className="h-36 w-full">
         {kind === 'dqn' && <DQNTradingVisual />}
         {kind === 'montecarlo' && <MonteCarloVisual />}
         {kind === 'gridworld' && <GridworldVisual />}
