@@ -24,6 +24,7 @@ const projects: Project[] = [
   },
   {
     title: 'Monte Carlo Simulation for Financial Derivatives Pricing',
+    subtitle: 'Python · NumPy · SciPy',
     visual: 'montecarlo',
     images: ['/monte-carlo-results.png'],
     description:
@@ -31,6 +32,7 @@ const projects: Project[] = [
   },
   {
     title: 'Reinforcement Learning Agent – Gridworld (PyTorch)',
+    subtitle: 'Python · PyTorch',
     visual: 'gridworld',
     images: ['/gridworld-path.png'],
     description:
@@ -38,8 +40,9 @@ const projects: Project[] = [
   },
   {
     title: 'Hydroelectric Power Plant Feasibility Study',
+    subtitle: 'Python · pandas · HYDAT',
     visual: 'hydro',
-    images: ['/hydro-spillway.jpg'],
+    images: ['/hydro-dam.jpg'],
     description:
       'A quantitative feasibility study modeling hydroelectric output under stochastic river-flow dynamics using flow-duration curves and HYDAT data. The analysis includes scenario and sensitivity analysis, tail-risk evaluation, and assessment of long-run economic viability.',
   },
