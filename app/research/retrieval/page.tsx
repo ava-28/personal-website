@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Card } from '@/components/Card'
 
 /* ─── animation ─── */
@@ -106,8 +105,8 @@ export default function RetrievalPage() {
                 {/* KPI summary cards */}
                 <div className="grid grid-cols-3 gap-3">
                   {[
-                    { label: 'Best nDCG@10', value: '0.309', system: 'SPLADE + ColBERT', accent: false },
-                    { label: 'Best Recall@10', value: '0.348', system: 'ColBERT', accent: true },
+                    { label: 'Best Recall@10', value: '0.348', system: 'ColBERT', accent: false },
+                    { label: 'Best nDCG@10', value: '0.309', system: 'SPLADE + ColBERT', accent: true },
                     { label: 'Best MRR', value: '0.419', system: 'ColBERT', accent: false },
                   ].map((kpi) => (
                     <div key={kpi.label} className={`rounded-xl border p-4 text-center ${kpi.accent ? 'border-accent-200 bg-accent-50 dark:border-accent-700/40 dark:bg-accent-900/20' : 'border-stone-200 bg-stone-50 dark:border-slate-700 dark:bg-slate-800/60'}`}>
@@ -116,62 +115,6 @@ export default function RetrievalPage() {
                       <p className="mt-0.5 text-xs text-stone-500 dark:text-slate-400">{kpi.system}</p>
                     </div>
                   ))}
-                </div>
-
-                {/* Metric comparison bar chart */}
-                <div className="rounded-xl border border-stone-200 bg-stone-50 p-5 dark:border-slate-700 dark:bg-slate-800/60">
-                  <p className="mb-4 text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-slate-500">
-                    Metric Comparison — BRIGHT Biology
-                  </p>
-                  {/* Legend */}
-                  <div className="mb-5 flex flex-wrap gap-4">
-                    {[
-                      { label: 'SPLADE (first-stage only)', color: 'bg-sky-400' },
-                      { label: 'SPLADE + ColBERT (two-stage)', color: 'bg-violet-500' },
-                      { label: 'ColBERT dense only (full corpus)', color: 'bg-slate-600 dark:bg-slate-500' },
-                    ].map((l) => (
-                      <div key={l.label} className="flex items-center gap-1.5">
-                        <span className={`h-2.5 w-2.5 shrink-0 rounded-sm ${l.color}`} />
-                        <span className="text-xs text-stone-500 dark:text-slate-400">{l.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                  {/* Bars */}
-                  <div className="space-y-5">
-                    {[
-                      { metric: 'nDCG@10', values: [0.218, 0.309, 0.308] },
-                      { metric: 'Recall@10', values: [0.254, 0.345, 0.348] },
-                      { metric: 'MRR', values: [0.291, 0.411, 0.419] },
-                    ].map((row) => {
-                      const colors = ['bg-sky-400', 'bg-violet-500', 'bg-slate-600 dark:bg-slate-500']
-                      const maxVal = 0.5
-                      return (
-                        <div key={row.metric}>
-                          <p className="mb-1.5 text-xs font-bold text-stone-700 dark:text-slate-300">{row.metric}</p>
-                          <div className="space-y-1.5">
-                            {row.values.map((v, ci) => (
-                              <div key={ci} className="flex items-center gap-2">
-                                <div className="relative h-5 flex-1 rounded-sm bg-stone-200 dark:bg-slate-700">
-                                  <div
-                                    className={`h-full rounded-sm transition-all ${colors[ci]}`}
-                                    style={{ width: `${(v / maxVal) * 100}%` }}
-                                  />
-                                </div>
-                                <span className={`w-10 shrink-0 text-right text-xs font-bold tabular-nums ${ci === 1 ? 'text-violet-600 dark:text-violet-400' : 'text-stone-600 dark:text-slate-300'}`}>
-                                  {v.toFixed(3)}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                  {/* X-axis ticks */}
-                  <div className="mt-3 flex justify-between pl-0 pr-12 text-xs text-stone-300 dark:text-slate-600">
-                    {[0, 0.1, 0.2, 0.3, 0.4, 0.5].map((t) => <span key={t}>{t}</span>)}
-                  </div>
-                  <p className="mt-1 text-center text-xs text-stone-400 dark:text-slate-500">Score (higher is better)</p>
                 </div>
 
                 {/* Results table */}
@@ -238,23 +181,6 @@ export default function RetrievalPage() {
                 </div>
 
               </div>
-
-              {/* Result figure: ColBERT MaxSim heatmap */}
-              <figure className="mt-5 overflow-hidden rounded-lg border border-stone-200 bg-white dark:border-slate-700 dark:bg-slate-900">
-                <Image
-                  src="/colbert-heatmap.png"
-                  alt="ColBERT MaxSim heatmap showing token-level similarity between a BRIGHT biology query and an irrelevant document, with red dots marking the per-query-token argmax."
-                  width={1600}
-                  height={820}
-                  className="h-auto w-full"
-                />
-                <figcaption className="border-t border-stone-100 px-4 py-2 text-xs leading-relaxed text-stone-500 dark:border-slate-700/60 dark:text-slate-400">
-                  ColBERT MaxSim heatmap on a BRIGHT biology query (id 5) against an irrelevant document.
-                  Rows are query tokens, columns are document tokens; brighter cells indicate higher dot-product
-                  similarity, and red dots mark each query token&apos;s argmax — the per-token contribution that
-                  MaxSim sums to produce the final relevance score.
-                </figcaption>
-              </figure>
 
               <div className="mt-4 flex flex-wrap gap-2">
                 {['SPLADE', 'ColBERT', 'BRIGHT Benchmark', 'Sparse-to-Dense', 'Reranking', 'Reproducibility'].map((tag) => (

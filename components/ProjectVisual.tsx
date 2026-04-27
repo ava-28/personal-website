@@ -7,6 +7,7 @@ export type ProjectVisualKind =
   | 'gridworld'
   | 'hydro'
   | 'transformer'
+  | 'dqn'
 
 interface ProjectVisualProps {
   kind: ProjectVisualKind
@@ -149,6 +150,125 @@ function TransformerVisual() {
   )
 }
 
+function DQNTradingVisual() {
+  // Price line: x 50→390, rough AAPL-like volatile upward drift
+  const pts: [number, number][] = [
+    [50, 186], [80, 170], [112, 179], [143, 157], [172, 166],
+    [202, 147], [232, 155], [262, 137], [292, 131], [322, 143], [352, 120], [390, 112],
+  ]
+  const line = pts.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x},${y}`).join(' ')
+  const area = `${line} L390,216 L50,216 Z`
+
+  // Action markers: [x, y, type]
+  const actions: [number, number, 'buy' | 'hold' | 'sell'][] = [
+    [80, 170, 'buy'], [143, 157, 'hold'], [172, 166, 'sell'],
+    [232, 155, 'buy'], [292, 131, 'hold'], [352, 120, 'buy'],
+  ]
+
+  // Sentiment bars below chart: [x, positive?]
+  const sentiments: [number, boolean][] = [
+    [80, true], [112, false], [143, true], [172, false],
+    [202, true], [232, true], [262, false], [292, true], [322, false], [352, true],
+  ]
+
+  const actionColor = { buy: '#22c55e', hold: '#94a3b8', sell: '#f87171' }
+  const actionLabel = { buy: 'B', hold: 'H', sell: 'S' }
+
+  return (
+    <svg viewBox="0 0 600 280" className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+      {/* Background */}
+      <rect width="600" height="280" fill="#f0fdf4" />
+
+      {/* Grid */}
+      <g stroke="#d1fae5" strokeWidth="1">
+        {[70, 110, 150, 190].map(y => <line key={y} x1="50" y1={y} x2="390" y2={y} />)}
+        {[50, 130, 210, 290, 370].map(x => <line key={x} x1={x} y1="60" x2={x} y2="216" />)}
+      </g>
+
+      {/* Price area fill */}
+      <path d={area} fill="#86efac" opacity="0.18" />
+      {/* Price line */}
+      <path d={line} fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
+
+      {/* Sentiment bars (mini, below chart) */}
+      {sentiments.map(([x, pos], i) => (
+        <rect
+          key={i}
+          x={x - 5} y={pos ? 220 : 228}
+          width={10} height={pos ? 8 : 8}
+          rx={2}
+          fill={pos ? '#4ade80' : '#f87171'}
+          opacity={0.8}
+        />
+      ))}
+      <text x="50" y="248" fontSize="9" fill="#86efac" fontFamily="system-ui,sans-serif" letterSpacing="0.5">NEWS SENTIMENT</text>
+
+      {/* Action markers on price line */}
+      {actions.map(([x, y, type], i) => (
+        <g key={i}>
+          <circle cx={x} cy={y} r={10} fill={actionColor[type]} opacity={0.92} />
+          <text x={x} y={y + 4} textAnchor="middle" fontSize="9" fontWeight="700" fill="white" fontFamily="system-ui,sans-serif">
+            {actionLabel[type]}
+          </text>
+        </g>
+      ))}
+
+      {/* Right panel */}
+      <rect x="412" y="48" width="168" height="172" rx="12" fill="#dcfce7" stroke="#86efac" strokeWidth="1" />
+      <text x="496" y="74" textAnchor="middle" fontSize="13" fontWeight="700" fill="#14532d" fontFamily="system-ui,sans-serif">DQN Agent</text>
+      <text x="496" y="90" textAnchor="middle" fontSize="10" fill="#15803d" fontFamily="system-ui,sans-serif">AAPL · Buy / Hold / Sell</text>
+
+      {/* NN nodes (3 input → 2 hidden → 3 output) */}
+      {/* inputs */}
+      {[112, 136, 160].map((y, i) => (
+        <circle key={i} cx="432" cy={y} r="7" fill="#bbf7d0" stroke="#4ade80" strokeWidth="1.2" />
+      ))}
+      {/* hidden */}
+      {[124, 148].map((y, i) => (
+        <circle key={i} cx="468" cy={y} r="7" fill="#86efac" stroke="#22c55e" strokeWidth="1.2" />
+      ))}
+      {/* output */}
+      {[112, 136, 160].map((y, i) => (
+        <circle key={i} cx="504" cy={y} r="7"
+          fill={['#86efac', '#d1fae5', '#fca5a5'][i]}
+          stroke={['#22c55e', '#94a3b8', '#f87171'][i]}
+          strokeWidth="1.2"
+        />
+      ))}
+      {/* edges input→hidden */}
+      {[112, 136, 160].flatMap((iy, ii) =>
+        [124, 148].map((hy, hi) => (
+          <line key={`${ii}-${hi}`} x1="439" y1={iy} x2="461" y2={hy} stroke="#4ade80" strokeWidth="0.6" opacity="0.5" />
+        ))
+      )}
+      {/* edges hidden→output */}
+      {[124, 148].flatMap((hy, hi) =>
+        [112, 136, 160].map((oy, oi) => (
+          <line key={`${hi}-${oi}`} x1="475" y1={hy} x2="497" y2={oy} stroke="#4ade80" strokeWidth="0.6" opacity="0.5" />
+        ))
+      )}
+      {/* output labels */}
+      <text x="518" y="116" fontSize="9" fontWeight="700" fill="#16a34a" fontFamily="system-ui,sans-serif">BUY</text>
+      <text x="518" y="140" fontSize="9" fontWeight="700" fill="#64748b" fontFamily="system-ui,sans-serif">HOLD</text>
+      <text x="518" y="164" fontSize="9" fontWeight="700" fill="#dc2626" fontFamily="system-ui,sans-serif">SELL</text>
+
+      {/* Bottom legend */}
+      <g fontFamily="system-ui,sans-serif" fontSize="9">
+        <circle cx="424" cy="200" r="5" fill="#22c55e" />
+        <text x="432" y="204" fill="#14532d">Buy</text>
+        <circle cx="457" cy="200" r="5" fill="#94a3b8" />
+        <text x="465" y="204" fill="#475569">Hold</text>
+        <circle cx="494" cy="200" r="5" fill="#f87171" />
+        <text x="502" y="204" fill="#991b1b">Sell</text>
+      </g>
+
+      <text x="50" y="38" fontSize="13" fontWeight="700" fill="#14532d" fontFamily="system-ui,sans-serif">
+        News-Driven DQN Trading · AAPL Equity
+      </text>
+    </svg>
+  )
+}
+
 export function ProjectVisual({ kind }: ProjectVisualProps) {
   return (
     <motion.div
@@ -157,6 +277,7 @@ export function ProjectVisual({ kind }: ProjectVisualProps) {
       transition={{ duration: 0.2 }}
     >
       <div className="h-44 w-full">
+        {kind === 'dqn' && <DQNTradingVisual />}
         {kind === 'montecarlo' && <MonteCarloVisual />}
         {kind === 'gridworld' && <GridworldVisual />}
         {kind === 'hydro' && <HydroVisual />}

@@ -9,52 +9,36 @@ interface Project {
   title: string
   subtitle?: string
   visual: ProjectVisualKind
-  highlights: string[]
+  image?: string
+  description: string
 }
 
 const projects: Project[] = [
   {
+    title: 'News-Driven Reinforcement Learning Trading Agent',
+    subtitle: 'Python · PyTorch · Finnhub API · yfinance',
+    visual: 'dqn',
+    description:
+      'A DQN-based trading agent targeting AAPL equity that frames trading as a sequential decision problem. The agent combines NLP-derived financial news sentiment from the Finnhub API with historical price data via yfinance as a joint state representation, training a Deep Q-Network with experience replay and target network stabilization to learn adaptive buy, hold, and sell strategies.',
+  },
+  {
     title: 'Monte Carlo Simulation for Financial Derivatives Pricing',
     visual: 'montecarlo',
-    highlights: [
-      'Developed a Monte Carlo simulation framework in Python to model stochastic asset price dynamics under uncertainty',
-      'Implemented risk-neutral sampling techniques to estimate the fair value of financial derivatives',
-      'Simulated asset price paths using Geometric Brownian Motion to approximate expected option payoffs',
-      'Applied probabilistic modeling to evaluate pricing sensitivity across varying volatility and time-to-maturity parameters',
-      'Explored the role of randomness and statistical convergence in financial decision-making systems',
-      'Investigated connections between simulation-based pricing methods and reinforcement learning approaches to sequential decision-making under uncertainty',
-    ],
+    description:
+      'A Monte Carlo simulation framework in Python for modeling stochastic asset price dynamics under uncertainty. Asset price paths are generated using Geometric Brownian Motion under risk-neutral measure to estimate the fair value of financial derivatives, with sensitivity analysis across volatility and time-to-maturity parameters.',
   },
   {
     title: 'Reinforcement Learning Agent – Gridworld (PyTorch)',
     visual: 'gridworld',
-    highlights: [
-      'Implemented Q-learning agent using Bellman optimality equations',
-      'Trained policies under different learning rates',
-      'Evaluated performance via empirical return distributions',
-      'Conducted hyperparameter sensitivity analysis',
-    ],
+    description:
+      'A tabular Q-learning agent implemented in PyTorch, trained on a Gridworld environment using Bellman optimality equations. The project explores policy learning under varying learning rates, evaluates performance via empirical return distributions, and includes hyperparameter sensitivity analysis.',
   },
   {
     title: 'Hydroelectric Power Plant Feasibility Study',
     visual: 'hydro',
-    highlights: [
-      'Modeled hydroelectric output under stochastic river-flow dynamics',
-      'Performed sensitivity and scenario analysis',
-      'Used flow-duration curves and HYDAT data',
-      'Evaluated economic viability and tail-risk',
-    ],
-  },
-  {
-    title: 'Research Paper – EEML 2025 Submission',
-    subtitle: 'A Comparative Review of Transformer, BERT, and ALBERT',
-    visual: 'transformer',
-    highlights: [
-      'Analyzed attention mechanisms',
-      'Studied bidirectional pretraining',
-      'Evaluated parameter efficiency',
-      'Compared architectural evolution in LLMs',
-    ],
+    image: '/hydro-dam.jpg',
+    description:
+      'A quantitative feasibility study modeling hydroelectric output under stochastic river-flow dynamics using flow-duration curves and HYDAT data. The analysis includes scenario and sensitivity analysis, tail-risk evaluation, and assessment of long-run economic viability.',
   },
 ]
 
@@ -80,7 +64,17 @@ export default function ProjectsPage() {
           {projects.map((project) => (
             <Card key={project.title}>
               <div className="space-y-4">
-                <ProjectVisual kind={project.visual} />
+                {project.image ? (
+                  <motion.div className="mb-4 overflow-hidden rounded-lg border border-accent-100 bg-white dark:border-slate-700 dark:bg-slate-800">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="h-44 w-full object-cover"
+                    />
+                  </motion.div>
+                ) : (
+                  <ProjectVisual kind={project.visual} />
+                )}
                 <div>
                   <h2 className="font-sans text-lg font-bold text-stone-900 dark:text-white">
                     {project.title}
@@ -91,19 +85,9 @@ export default function ProjectsPage() {
                     </p>
                   )}
                 </div>
-                <ul className="space-y-2">
-                  {project.highlights.map((highlight) => (
-                    <li
-                      key={highlight}
-                      className="flex items-start gap-2 text-stone-700 dark:text-slate-300"
-                    >
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-300" />
-                      <span className="text-sm leading-relaxed">
-                        {highlight}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-sm leading-relaxed text-stone-600 dark:text-slate-300">
+                  {project.description}
+                </p>
               </div>
             </Card>
           ))}

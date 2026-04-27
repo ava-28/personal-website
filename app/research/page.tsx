@@ -105,6 +105,7 @@ const researchAreas = [
     badge: 'NSERC CREATE Scholarship',
     presentation: 'Canadian AI 2026 · Responsible AI Track · Poster / 3MT',
     sections: [] as string[],
+    linked: true,
     bannerImage: '/colbert-heatmap.png',
     bannerSvg: false,
     gradientFrom: 'from-violet-400/30',
@@ -123,6 +124,7 @@ const researchAreas = [
     badge: null,
     presentation: null,
     sections: [] as string[],
+    linked: false,
     bannerImage: null,
     bannerSvg: true,
     gradientFrom: 'from-indigo-400/30',
@@ -162,8 +164,91 @@ export default function ResearchPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: i * 0.1 }}
             >
-              <Link href={area.href} className="group block">
-                <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white/60 transition-all hover:border-accent-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800/60 dark:hover:border-accent-600">
+              {area.linked ? (
+                <Link href={area.href} className="group block">
+                  <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white/60 transition-all hover:border-accent-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800/60 dark:hover:border-accent-600">
+
+                    {/* Visual banner */}
+                    <div className={`relative h-40 overflow-hidden ${(!area.bannerImage && !area.bannerSvg) ? `bg-gradient-to-br ${area.gradientFrom} ${area.gradientVia} ${area.gradientTo}` : 'bg-white'}`}>
+                      {area.bannerImage ? (
+                        <>
+                          <img
+                            src={area.bannerImage}
+                            alt={`${area.title} research visualization`}
+                            className="absolute inset-0 h-full w-full object-cover object-center"
+                          />
+                          <div className="absolute inset-0 bg-black/20" />
+                        </>
+                      ) : area.bannerSvg ? (
+                        <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                          <MultilingualBanner />
+                        </div>
+                      ) : (
+                        <div className="absolute inset-0 flex flex-wrap items-center justify-around gap-x-6 gap-y-3 px-8 py-6 select-none">
+                          {area.terms.map((term, ti) => (
+                            <span
+                              key={term}
+                              className={`font-mono text-sm font-bold ${area.termColor}`}
+                              style={{ transform: `rotate(${(ti % 3 - 1) * 4}deg)` }}
+                            >
+                              {term}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      {/* Arrow hint */}
+                      <div className="absolute bottom-4 right-5 flex h-8 w-8 items-center justify-center rounded-full bg-white/30 text-white backdrop-blur-sm transition-all group-hover:bg-accent-600/80 group-hover:scale-110">
+                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                          <path d="M3 8h10M9 4l4 4-4 4" />
+                        </svg>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6">
+                      <div className="flex flex-wrap items-start justify-between gap-2">
+                        <div>
+                          <h2 className="font-sans text-base font-bold text-stone-900 transition-colors group-hover:text-accent-600 dark:text-slate-100 dark:group-hover:text-accent-400">
+                            {area.title}
+                          </h2>
+                          <p className="mt-0.5 text-sm text-accent-600 dark:text-accent-400">
+                            {area.supervisor} · UBC · {area.period}
+                          </p>
+                          {area.presentation && (
+                            <p className="mt-1 text-xs text-stone-400 dark:text-slate-500">
+                              {area.presentation}
+                            </p>
+                          )}
+                        </div>
+                        {area.badge && (
+                          <span className="shrink-0 rounded-full bg-accent-100 px-3 py-1 text-xs font-bold text-accent-700 dark:bg-accent-900/40 dark:text-accent-300">
+                            {area.badge}
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="mt-3 text-sm leading-relaxed text-stone-600 dark:text-slate-300">
+                        {area.description}
+                      </p>
+
+                      {area.sections.length > 0 && (
+                        <div className="mt-4 flex flex-wrap gap-1.5">
+                          {area.sections.map((s) => (
+                            <span
+                              key={s}
+                              className="rounded-full bg-stone-100 px-2.5 py-0.5 text-xs font-medium text-stone-500 dark:bg-slate-800 dark:text-slate-400"
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                  </div>
+                </Link>
+              ) : (
+                <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white/60 dark:border-slate-700 dark:bg-slate-800/60">
 
                   {/* Visual banner */}
                   <div className={`relative h-40 overflow-hidden ${(!area.bannerImage && !area.bannerSvg) ? `bg-gradient-to-br ${area.gradientFrom} ${area.gradientVia} ${area.gradientTo}` : 'bg-white'}`}>
@@ -193,19 +278,13 @@ export default function ResearchPage() {
                         ))}
                       </div>
                     )}
-                    {/* Arrow hint */}
-                    <div className="absolute bottom-4 right-5 flex h-8 w-8 items-center justify-center rounded-full bg-white/30 text-white backdrop-blur-sm transition-all group-hover:bg-accent-600/80 group-hover:scale-110">
-                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                        <path d="M3 8h10M9 4l4 4-4 4" />
-                      </svg>
-                    </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-6">
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div>
-                        <h2 className="font-sans text-base font-bold text-stone-900 transition-colors group-hover:text-accent-600 dark:text-slate-100 dark:group-hover:text-accent-400">
+                        <h2 className="font-sans text-base font-bold text-stone-900 dark:text-slate-100">
                           {area.title}
                         </h2>
                         <p className="mt-0.5 text-sm text-accent-600 dark:text-accent-400">
@@ -228,7 +307,6 @@ export default function ResearchPage() {
                       {area.description}
                     </p>
 
-                    {/* Section pills — only shown when non-empty */}
                     {area.sections.length > 0 && (
                       <div className="mt-4 flex flex-wrap gap-1.5">
                         {area.sections.map((s) => (
@@ -244,7 +322,7 @@ export default function ResearchPage() {
                   </div>
 
                 </div>
-              </Link>
+              )}
             </motion.div>
           ))}
         </div>
