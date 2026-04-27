@@ -25,6 +25,7 @@ const projects: Project[] = [
   {
     title: 'Monte Carlo Simulation for Financial Derivatives Pricing',
     visual: 'montecarlo',
+    images: ['/monte-carlo-results.png'],
     description:
       'A Monte Carlo simulation framework in Python for modeling stochastic asset price dynamics under uncertainty. Asset price paths are generated using Geometric Brownian Motion under risk-neutral measure to estimate the fair value of financial derivatives, with sensitivity analysis across volatility and time-to-maturity parameters.',
   },
