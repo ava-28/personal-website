@@ -50,7 +50,7 @@ export const metadata: Metadata = {
       'Ava Ahmadi is a Mathematics undergraduate at UBC researching transformer-based retrieval, multilingual NLP, and responsible AI.',
     images: [
       {
-        url: '/ava.png',
+        url: '/ava-ahmadi.png',
         width: 1080,
         height: 1080,
         alt: 'Portrait of Ava Ahmadi',
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     title: 'Ava Ahmadi – Mathematics & ML Research',
     description:
       'Mathematics undergraduate at UBC researching transformer-based retrieval, multilingual NLP, and responsible AI.',
-    images: ['/ava.png'],
+    images: ['/ava-ahmadi.png'],
   },
   robots: {
     index: true,
@@ -99,9 +99,25 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Person',
+              '@id': 'https://avaahmadi.com/#ava-ahmadi',
               name: 'Ava Ahmadi',
               url: 'https://avaahmadi.com',
-              image: 'https://avaahmadi.com/ava.png',
+              image: {
+                '@type': 'ImageObject',
+                '@id': 'https://avaahmadi.com/ava-ahmadi.png',
+                url: 'https://avaahmadi.com/ava-ahmadi.png',
+                contentUrl: 'https://avaahmadi.com/ava-ahmadi.png',
+                name: 'Ava Ahmadi',
+                description:
+                  'Portrait photo of Ava Ahmadi, Mathematics undergraduate researcher at the University of British Columbia',
+                width: 1080,
+                height: 1080,
+                encodingFormat: 'image/png',
+              },
+              mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': 'https://avaahmadi.com',
+              },
               jobTitle: 'Mathematics Undergraduate Researcher',
               worksFor: {
                 '@type': 'Organization',

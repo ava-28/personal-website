@@ -80,7 +80,7 @@ export default function HomePage() {
                 className="absolute -inset-3 -z-10 rounded-full bg-gradient-to-br from-accent-400/40 via-violet-400/30 to-indigo-300/30 blur-2xl dark:from-accent-500/30 dark:via-violet-500/25 dark:to-indigo-400/25"
               />
               <Image
-                src="/ava.png"
+                src="/ava-ahmadi.png"
                 alt="Ava Ahmadi"
                 width={400}
                 height={400}
