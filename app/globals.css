@@ -10,3 +10,23 @@
     @apply bg-stone-50 text-stone-800 antialiased transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100;
   }
 }
+
+@layer utilities {
+  /* Faint graph-paper texture used behind the hero and section dividers */
+  .bg-paper {
+    background-image:
+      linear-gradient(to right, rgb(0 0 0 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 0 0 / 0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .dark .bg-paper {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  }
+
+  /* Small-caps index label, used by the nav and section eyebrows */
+  .label-index {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.18em];
+  }
+}

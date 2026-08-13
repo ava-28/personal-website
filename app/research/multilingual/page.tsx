@@ -16,8 +16,8 @@ const multilingualConcepts = [
   {
     title: 'Multilingual Transformers',
     tag: 'mBERT · XLM-R',
-    color: 'bg-indigo-50 border-indigo-200 dark:bg-indigo-900/20 dark:border-indigo-700/40',
-    tagColor: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-800/50 dark:text-indigo-300',
+    color: 'bg-accent-50 border-accent-200 dark:bg-accent-900/20 dark:border-accent-700/40',
+    tagColor: 'bg-accent-100 text-accent-700 dark:bg-accent-800/50 dark:text-accent-300',
     description:
       'Models like mBERT and XLM-RoBERTa are trained on multilingual corpora and develop internal representations that appear to generalise across languages — even without explicit cross-lingual supervision. Understanding how and why this happens motivates this research.',
     properties: ['Shared vocabulary across languages', 'Zero-shot cross-lingual transfer', 'Emergent alignment without explicit supervision', 'Language-neutral vs. language-specific subspaces'],
@@ -25,8 +25,8 @@ const multilingualConcepts = [
   {
     title: 'Representation Alignment',
     tag: 'CKA · Probing',
-    color: 'bg-emerald-50 border-emerald-200 dark:bg-emerald-900/20 dark:border-emerald-700/40',
-    tagColor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-800/50 dark:text-emerald-300',
+    color: 'bg-stone-100 border-stone-300 dark:bg-slate-800/60 dark:border-slate-600/60',
+    tagColor: 'bg-stone-200 text-stone-800 dark:bg-slate-700 dark:text-slate-200',
     description:
       'Cross-lingual representation alignment studies how semantically equivalent content in different languages maps to similar positions in the shared embedding space. Techniques such as Centred Kernel Alignment (CKA) and linear probing classifiers reveal the degree and nature of this alignment.',
     properties: ['CKA similarity between language subspaces', 'Probing for syntactic and semantic structure', 'Layer-wise alignment analysis', 'Mapping functions between language spaces'],
@@ -34,8 +34,8 @@ const multilingualConcepts = [
   {
     title: 'Linguistic Structure in Embeddings',
     tag: 'Syntax · Morphology',
-    color: 'bg-amber-50 border-amber-200 dark:bg-amber-900/20 dark:border-amber-700/40',
-    tagColor: 'bg-amber-100 text-amber-700 dark:bg-amber-800/50 dark:text-amber-300',
+    color: 'bg-accent-100 border-accent-300 dark:bg-accent-800/30 dark:border-accent-600/50',
+    tagColor: 'bg-accent-200 text-accent-800 dark:bg-accent-700/60 dark:text-accent-100',
     description:
       'Beyond semantics, multilingual models encode syntactic structures such as dependency relations and morphological features. Probing experiments disentangle which layers encode what kinds of linguistic information, and whether these representations generalise across typologically distant languages.',
     properties: ['Dependency structure in hidden states', 'Morphological feature encoding', 'Layer specialisation (lower = syntax, upper = semantics)', 'Cross-typological generalisation'],
@@ -190,17 +190,17 @@ function ModelArchDiagram() {
   const models = [
     {
       ox: 10, label: 'mBERT',
-      boxFill: '#EFF6FF', boxStroke: '#93C5FD',
-      circleFill: '#BFDBFE', circleStroke: '#60A5FA',
-      layerBg: '#DBEAFE', layerFill: '#BFDBFE', layerStroke: '#93C5FD',
-      tokenFill: '#DBEAFE', titleFill: '#1E3A5F',
+      boxFill: '#EEF1F6', boxStroke: '#8B96AC',
+      circleFill: '#C7CEDC', circleStroke: '#5B6B87',
+      layerBg: '#DCE1EA', layerFill: '#C7CEDC', layerStroke: '#8B96AC',
+      tokenFill: '#DCE1EA', titleFill: '#14213D',
     },
     {
       ox: 415, label: 'XLM-R',
-      boxFill: '#F0FDF4', boxStroke: '#86EFAC',
-      circleFill: '#BBF7D0', circleStroke: '#4ADE80',
-      layerBg: '#DCFCE7', layerFill: '#BBF7D0', layerStroke: '#86EFAC',
-      tokenFill: '#DCFCE7', titleFill: '#14532D',
+      boxFill: '#FBF8F0', boxStroke: '#D9CDA8',
+      circleFill: '#EDE3C8', circleStroke: '#C2AE7A',
+      layerBg: '#F3ECD8', layerFill: '#EDE3C8', layerStroke: '#D9CDA8',
+      tokenFill: '#F3ECD8', titleFill: '#6B5A2E',
     },
   ]
 
@@ -300,7 +300,7 @@ export default function MultilingualPage() {
           transition={{ duration: 0.5, delay: 0.05 }}
           className="mb-12 mt-4"
         >
-          <h1 className="font-sans text-3xl font-semibold tracking-tight text-stone-900 md:text-4xl dark:text-white">
+          <h1 className="font-display text-3xl font-bold uppercase tracking-tight text-stone-900 md:text-4xl dark:text-white">
             Multilingual Transformer Mapping
           </h1>
           <p className="mt-2 text-stone-500 dark:text-slate-400">

@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { MathBackground } from '@/components/MathBackground'
+import { StochasticField } from '@/components/StochasticField'
 import { Section } from '@/components/Section'
 
-const TAGLINE = 'Mathematics × Machine Learning × UBC'
+const TAGLINE = 'Mathematics × Machine Learning × Quantitative Finance'
 
 export default function HomePage() {
   const [typed, setTyped] = useState('')
@@ -24,8 +25,8 @@ export default function HomePage() {
           clearInterval(intervalId)
           setTypingDone(true)
         }
-      }, 52)
-    }, 820)
+      }, 42)
+    }, 700)
     return () => {
       clearTimeout(delayId)
       clearInterval(intervalId)
@@ -35,102 +36,75 @@ export default function HomePage() {
   return (
     <div className="relative overflow-hidden">
       <MathBackground />
-      <div className="relative z-10 mx-auto max-w-3xl px-6 pb-20">
 
-        {/* Hero */}
-        <div className="relative mb-14 pt-4">
-          {/* Animated background blobs */}
-          <motion.div
-            aria-hidden
-            className="pointer-events-none absolute -left-16 -top-12 h-72 w-72 rounded-full bg-violet-400/25 blur-3xl dark:bg-violet-600/20"
-            animate={{ x: [0, 14, 0], y: [0, -10, 0], scale: [1, 1.06, 1] }}
-            transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          <motion.div
-            aria-hidden
-            className="pointer-events-none absolute -right-8 top-4 h-56 w-56 rounded-full bg-indigo-400/20 blur-3xl dark:bg-indigo-500/20"
-            animate={{ x: [0, -10, 0], y: [0, 14, 0], scale: [1, 1.08, 1] }}
-            transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-          />
-          <motion.div
-            aria-hidden
-            className="pointer-events-none absolute left-1/3 top-6 h-40 w-40 rounded-full bg-fuchsia-400/15 blur-2xl dark:bg-fuchsia-600/15"
-            animate={{ x: [0, 8, -5, 0], y: [0, -12, 6, 0] }}
-            transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-          />
-          <motion.div
-            aria-hidden
-            className="pointer-events-none absolute bottom-0 right-1/4 h-32 w-32 rounded-full bg-sky-400/15 blur-2xl dark:bg-sky-600/15"
-            animate={{ x: [0, -6, 0], y: [0, 8, 0] }}
-            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          />
+      {/* ── Hero band ── */}
+      <div className="relative overflow-hidden border-b border-stone-300 bg-paper dark:border-slate-800">
+        <StochasticField />
+        <div className="relative z-10 mx-auto max-w-3xl px-6 pb-14 pt-16 xl:pt-24">
 
-          {/* Hero content: portrait + intro */}
-          <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:gap-10">
+          <motion.span
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="label-index text-accent-600 dark:text-accent-400"
+          >
+            Mathematics — University of British Columbia
+          </motion.span>
 
-            {/* Portrait */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.55, delay: 0.05 }}
-              className="relative shrink-0"
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.08 }}
+            className="mt-3 font-display text-5xl font-bold uppercase leading-[0.92] tracking-tight text-stone-900 dark:text-white sm:text-6xl md:text-7xl"
+          >
+            Ava
+            <br />
+            Ahmadi
+          </motion.h1>
+
+          <div className="mt-7 flex flex-col-reverse gap-8 sm:flex-row sm:items-end sm:justify-between">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.85 }}
+              className="min-h-[1.75rem] max-w-md text-lg text-stone-600 dark:text-slate-400"
             >
-              <div
-                aria-hidden
-                className="absolute -inset-3 -z-10 rounded-full bg-gradient-to-br from-accent-400/40 via-violet-400/30 to-indigo-300/30 blur-2xl dark:from-accent-500/30 dark:via-violet-500/25 dark:to-indigo-400/25"
-              />
-              <Image
-                src="/ava-ahmadi.png"
-                alt="Ava Ahmadi"
-                width={400}
-                height={400}
-                priority
-                className="h-32 w-32 rounded-full object-cover ring-2 ring-white shadow-lg shadow-stone-900/10 dark:ring-slate-700 dark:shadow-black/40 md:h-40 md:w-40"
-              />
+              {typed}
+              {!typingDone && (
+                <span className="ml-0.5 inline-block h-[1.1em] w-[2px] translate-y-[2px] animate-pulse rounded-sm bg-accent-600 align-middle dark:bg-accent-400" />
+              )}
+            </motion.p>
+
+            {/* Portrait — framed like a figure in a paper, not a soft avatar */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="shrink-0 self-start sm:self-end"
+            >
+              <div className="border-2 border-stone-900 bg-white p-1 dark:border-white dark:bg-slate-900">
+                <Image
+                  src="/ava-ahmadi.png"
+                  alt="Ava Ahmadi"
+                  width={400}
+                  height={400}
+                  priority
+                  className="h-32 w-32 object-cover sm:h-36 sm:w-36 md:h-40 md:w-40"
+                />
+              </div>
             </motion.div>
+          </div>
 
-            {/* Intro text + social icons */}
-            <div className="min-w-0 flex-1">
-              {/* Greeting */}
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: 0.1 }}
-                className="text-base font-medium text-stone-500 dark:text-slate-400"
-              >
-                Hey, I&apos;m
-              </motion.p>
-
-              {/* Name */}
-              <motion.h1
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-1 font-sans text-3xl font-semibold tracking-tight md:text-4xl"
-              >
-                <span className="bg-gradient-to-r from-accent-500 via-violet-500 to-indigo-400 bg-clip-text text-transparent dark:from-accent-400 dark:via-violet-400 dark:to-indigo-300">
-                  Ava Ahmadi
-                </span>
-              </motion.h1>
-
-              {/* Tagline */}
-              <p className="mt-4 min-h-[1.75rem] text-lg text-stone-600 dark:text-slate-400">
-                {typed}
-                {!typingDone && (
-                  <span className="ml-0.5 inline-block h-[1.1em] w-[2px] translate-y-[2px] animate-pulse rounded-sm bg-accent-500 align-middle dark:bg-accent-400" />
-                )}
-              </p>
-
-              {/* Social icon links */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.9 }}
-                className="mt-8 flex items-center gap-3"
-              >
+          {/* Social icon links */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 1.05 }}
+            className="mt-9 flex items-center gap-3"
+          >
             {/* GitHub */}
             <a
-              href="https://github.com/avaahmadi"
+              href="https://github.com/ava-28"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -163,13 +137,15 @@ export default function HomePage() {
                 <path d="M2 7l10 7 10-7" />
               </svg>
             </a>
-              </motion.div>
-            </div>
-          </div>
+          </motion.div>
         </div>
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-3xl px-6 pb-20 pt-14">
 
         {/* About me */}
-        <Section className="mb-20">
+        <Section className="mb-16">
+          <p className="label-index mb-4 text-stone-400 dark:text-slate-500">Index — About</p>
           <div className="space-y-4">
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -207,11 +183,11 @@ export default function HomePage() {
           </div>
         </Section>
 
-
         {/* Contact */}
         <Section className="mb-8">
-          <h2 className="mb-4 font-sans text-2xl font-bold text-stone-900 dark:text-white">
-            Contact
+          <p className="label-index mb-4 text-stone-400 dark:text-slate-500">Index — Contact</p>
+          <h2 className="mb-4 font-display text-2xl font-bold uppercase tracking-tight text-stone-900 dark:text-white">
+            Get in touch
           </h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}

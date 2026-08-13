@@ -20,17 +20,17 @@ function MultilingualBanner() {
   const models = [
     {
       ox: 10, label: 'mBERT',
-      boxFill: '#EFF6FF', boxStroke: '#93C5FD',
-      circleFill: '#BFDBFE', circleStroke: '#60A5FA',
-      layerBg: '#DBEAFE', layerFill: '#BFDBFE', layerStroke: '#93C5FD',
-      tokenFill: '#DBEAFE', titleFill: '#1E3A5F',
+      boxFill: '#EEF1F6', boxStroke: '#8B96AC',
+      circleFill: '#C7CEDC', circleStroke: '#5B6B87',
+      layerBg: '#DCE1EA', layerFill: '#C7CEDC', layerStroke: '#8B96AC',
+      tokenFill: '#DCE1EA', titleFill: '#14213D',
     },
     {
       ox: 415, label: 'XLM-R',
-      boxFill: '#F0FDF4', boxStroke: '#86EFAC',
-      circleFill: '#BBF7D0', circleStroke: '#4ADE80',
-      layerBg: '#DCFCE7', layerFill: '#BBF7D0', layerStroke: '#86EFAC',
-      tokenFill: '#DCFCE7', titleFill: '#14532D',
+      boxFill: '#FBF8F0', boxStroke: '#D9CDA8',
+      circleFill: '#EDE3C8', circleStroke: '#C2AE7A',
+      layerBg: '#F3ECD8', layerFill: '#EDE3C8', layerStroke: '#D9CDA8',
+      tokenFill: '#F3ECD8', titleFill: '#6B5A2E',
     },
   ]
 
@@ -108,10 +108,10 @@ const researchAreas = [
     linked: true,
     bannerImage: '/colbert-heatmap.png',
     bannerSvg: false,
-    gradientFrom: 'from-violet-400/30',
-    gradientVia: 'via-fuchsia-400/20',
-    gradientTo: 'to-indigo-400/25',
-    termColor: 'text-violet-400/40 dark:text-violet-300/20',
+    gradientFrom: 'from-accent-400/30',
+    gradientVia: 'via-accent-500/20',
+    gradientTo: 'to-accent-700/25',
+    termColor: 'text-accent-400/40 dark:text-accent-300/20',
     terms: ['SPLADE', 'ColBERT', 'MaxSim', 'BRIGHT', 'PLAID', 'BM25', 'BEIR'],
   },
   {
@@ -127,10 +127,10 @@ const researchAreas = [
     linked: false,
     bannerImage: null,
     bannerSvg: true,
-    gradientFrom: 'from-indigo-400/30',
-    gradientVia: 'via-sky-400/20',
-    gradientTo: 'to-emerald-400/25',
-    termColor: 'text-indigo-400/40 dark:text-indigo-300/20',
+    gradientFrom: 'from-accent-700/30',
+    gradientVia: 'via-accent-500/20',
+    gradientTo: 'to-accent-300/25',
+    termColor: 'text-accent-400/40 dark:text-accent-300/20',
     terms: ['mBERT', 'XLM-R', 'CKA', 'Probing', 'UD', 'XNLI', 'XTREME'],
   },
 ]
@@ -147,7 +147,8 @@ export default function ResearchPage() {
           transition={{ duration: 0.5 }}
           className="mb-12 pt-12"
         >
-          <h1 className="font-sans text-3xl font-semibold tracking-tight text-stone-900 md:text-4xl dark:text-white">
+          <p className="label-index mb-3 text-stone-400 dark:text-slate-500">Index — Research</p>
+          <h1 className="font-display text-3xl font-bold uppercase tracking-tight text-stone-900 md:text-4xl dark:text-white">
             Research
           </h1>
           <p className="mt-3 text-stone-600 dark:text-slate-400">

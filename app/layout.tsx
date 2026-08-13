@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Open_Sans, Playfair_Display } from 'next/font/google'
+import { Open_Sans, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
@@ -14,8 +14,15 @@ const openSans = Open_Sans({
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
-  weight: ['400', '700', '800', '900'],
+  weight: ['600', '700', '800', '900'],
   style: ['normal', 'italic'],
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  weight: ['400', '500', '600'],
   display: 'swap',
 })
 
@@ -90,7 +97,7 @@ export default function RootLayout({
   `
 
   return (
-    <html lang="en" suppressHydrationWarning className={`${openSans.variable} ${playfair.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${openSans.variable} ${playfair.variable} ${jetbrainsMono.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
@@ -145,7 +152,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col">
         <Navigation />
-        <main className="flex-1 pt-16">{children}</main>
+        <main className="flex-1 pt-16 xl:pt-0">{children}</main>
         <Footer />
       </body>
     </html>

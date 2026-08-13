@@ -9,13 +9,13 @@ const awmLinks = [
     label: 'Instagram',
     handle: '@awm.ubc',
     href: 'https://www.instagram.com/awm.ubc',
-    color: 'bg-fuchsia-100 text-fuchsia-700 border-fuchsia-200 dark:bg-fuchsia-900/30 dark:text-fuchsia-300 dark:border-fuchsia-700/50',
+    color: 'bg-accent-100 text-accent-700 border-accent-200 dark:bg-accent-900/30 dark:text-accent-300 dark:border-accent-700/50',
   },
   {
     label: 'Website',
     handle: 'awmubc.github.io',
     href: 'https://awmubc.github.io',
-    color: 'bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-700/50',
+    color: 'bg-stone-100 text-stone-700 border-stone-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700',
   },
 ]
 
@@ -67,7 +67,8 @@ export default function LeadershipPage() {
           transition={{ duration: 0.5 }}
           className="mb-14 pt-12"
         >
-          <h1 className="font-sans text-3xl font-semibold tracking-tight text-stone-900 md:text-4xl dark:text-white">
+          <p className="label-index mb-3 text-stone-400 dark:text-slate-500">Index — Leadership</p>
+          <h1 className="font-display text-3xl font-bold uppercase tracking-tight text-stone-900 md:text-4xl dark:text-white">
             Leadership
           </h1>
           <p className="mt-3 text-stone-600 dark:text-slate-400">

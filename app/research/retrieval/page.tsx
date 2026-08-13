@@ -35,7 +35,7 @@ export default function RetrievalPage() {
           transition={{ duration: 0.5, delay: 0.05 }}
           className="mb-12 mt-4"
         >
-          <h1 className="font-sans text-3xl font-semibold tracking-tight text-stone-900 md:text-4xl dark:text-white">
+          <h1 className="font-display text-3xl font-bold uppercase tracking-tight text-stone-900 md:text-4xl dark:text-white">
             Transformer-Based Retrieval
           </h1>
           <p className="mt-2 text-stone-500 dark:text-slate-400">
