@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Card } from '@/components/Card'
+import { Section } from '@/components/Section'
 
 const awmLinks = [
   {
@@ -13,8 +13,8 @@ const awmLinks = [
   },
   {
     label: 'Website',
-    handle: 'awmubc.github.io',
-    href: 'https://awmubc.github.io',
+    handle: 'awm.math.ubc.ca',
+    href: 'https://awm.math.ubc.ca/',
     color: 'bg-stone-100 text-stone-700 border-stone-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700',
   },
 ]
@@ -23,37 +23,37 @@ const accomplishments = [
   {
     category: 'Building the Organization',
     items: [
-      'Founded the undergraduate AWM chapter at UBC from the ground up, becoming the first such chapter at this institution',
-      'Structured an operational framework with clearly defined executive roles across events, finance, outreach, and technology',
-      'Designed and deployed a data-driven membership intake system to assess student interest, allocate roles, and track participation patterns',
-      'Established AWM UBC on Instagram and launched our website to grow our digital presence and outreach reach',
-      'Secured support from the UBC Mathematics Department and the Pacific Institute for the Mathematical Sciences (PIMS)',
+      'Founded the undergraduate AWM chapter at UBC from the ground up — the first chapter of its kind at the university',
+      'Built out an executive team with clear roles across events, finance, outreach, and tech',
+      'Set up a sign-up and intake system to understand what members were looking for and match people to the right roles',
+      'Got AWM UBC onto Instagram and built our website so people could actually find us',
+      'Brought the UBC Mathematics Department and the Pacific Institute for the Mathematical Sciences (PIMS) on board as institutional supporters',
     ],
   },
   {
     category: 'Community & Faculty Engagement',
     items: [
-      'Collaborate directly with faculty members and the Departmental Equity Committee to align our programming with broader inclusion goals',
-      'Coordinate mentorship programs pairing undergraduate students with graduate students and faculty in mathematics and related fields',
-      'Facilitate academic panels and Q&A sessions with researchers to help undergraduates navigate research and graduate school',
+      'Work directly with faculty and the department’s Equity Committee to keep our programming aligned with the department’s inclusion goals',
+      'Run a mentorship program pairing undergrads with grad students and faculty in math and related fields',
+      'Host panels and Q&As with researchers so undergrads have a real place to ask questions about research and grad school',
     ],
   },
   {
     category: 'Events & Academic Programming',
     items: [
-      'Organize social and networking events that bring together students across mathematical disciplines to foster community and belonging',
-      'Run technical workshops on topics spanning mathematical methods, research tools, and career development',
-      'Build support structures for students pursuing mathematically intensive disciplines, with a focus on accessibility and retention',
-      'Develop programming aimed at students interested in research, graduate studies, and quantitative careers',
+      'Run social events that bring students together across different areas of math, just to build community',
+      'Run workshops covering everything from mathematical methods to research tools to career prep',
+      'Put support in place for students in math-heavy programs, with a focus on accessibility and retention',
+      'Build programming for students thinking about research, grad school, or quantitative careers',
     ],
   },
 ]
 
 const overview =
-  'I founded AWM at UBC in January 2026 because I believe mathematics is more powerful when the room includes everyone capable of doing it. Starting from nothing, I built an organization with a full executive team spanning communications, events, finance, mentorship, external relations, and technology, and secured institutional backing from the UBC Mathematics Department and the Pacific Institute for the Mathematical Sciences. I lead this chapter the same way I approach my research: with precision, intention, and a long view.'
+  'I started the AWM chapter at UBC in January 2026 because I wanted a real community for women studying math here, not just a club that exists on paper. It began with nothing, and has grown into a full executive team spanning communications, events, finance, mentorship, and technology, with real backing from the UBC Mathematics Department and PIMS. I try to run it with the same care I bring to research: thinking a few steps ahead, not just getting through the next event.'
 
 const reflection =
-  'Mathematics gave me a language for the world. AWM at UBC is my way of making sure more women get to speak it.'
+  'Math gave me a language for making sense of the world. AWM at UBC is how I make sure more women get to learn to speak it too.'
 
 export default function LeadershipPage() {
   return (
@@ -76,44 +76,37 @@ export default function LeadershipPage() {
           </p>
         </motion.div>
 
-        {/* Hero card */}
-        <Card>
+        {/* Hero */}
+        <Section className="border-b border-stone-300 pb-10 dark:border-slate-800">
           <div className="space-y-6">
 
-            {/* Banner image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative h-56 w-full overflow-hidden rounded-md border border-stone-200 bg-stone-100 dark:border-slate-700 dark:bg-slate-800 sm:h-72"
-            >
-              <Image
-                src="/awm-ubc.png"
-                alt="Association for Women in Mathematics at UBC"
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 768px"
-                className="object-cover"
-              />
-            </motion.div>
-
-            {/* Role info */}
+            {/* Logo + role info */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
+              className="flex items-center gap-5"
             >
-              <h2 className="font-sans text-xl font-bold text-stone-900 dark:text-white">
-                Founder &amp; President
-              </h2>
-              <p className="mt-1 font-medium text-accent-600 dark:text-accent-400">
-                Association for Women in Mathematics (AWM) @ UBC
-              </p>
-              <p className="text-sm text-stone-500 dark:text-slate-400">
-                Jan 2026 – Present
-              </p>
+              <Image
+                src="/awm-logo-circle.png"
+                alt="Association for Women in Mathematics at UBC logo"
+                width={480}
+                height={480}
+                priority
+                className="h-16 w-16 shrink-0 rounded-full ring-1 ring-stone-300 dark:ring-slate-600 sm:h-20 sm:w-20"
+              />
+              <div>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-stone-900 dark:text-white">
+                  Founder &amp; President
+                </h2>
+                <p className="mt-1 font-medium text-accent-600 dark:text-accent-400">
+                  Association for Women in Mathematics (AWM) @ UBC
+                </p>
+                <p className="text-sm text-stone-500 dark:text-slate-400">
+                  Jan 2026 – Present
+                </p>
+              </div>
             </motion.div>
 
             {/* Overview */}
@@ -150,7 +143,7 @@ export default function LeadershipPage() {
             </motion.div>
 
           </div>
-        </Card>
+        </Section>
 
         {/* Accomplishments */}
         <div className="mt-10 space-y-8">

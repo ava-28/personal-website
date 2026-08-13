@@ -177,7 +177,7 @@ export default function HomePage() {
               className="leading-relaxed text-stone-600 dark:text-slate-300"
             >
               Alongside my research, I founded and lead the{' '}
-              <a href="https://awmubc.github.io" target="_blank" rel="noopener noreferrer" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">AWM chapter at UBC</a>
+              <a href="https://awm.math.ubc.ca/" target="_blank" rel="noopener noreferrer" className="font-medium text-accent-600 underline-offset-2 hover:underline dark:text-accent-400">AWM chapter at UBC</a>
               , the first undergraduate chapter of the Association for Women in Mathematics at this institution, with a focus on building community, mentorship, and access for women across the mathematical sciences.
             </motion.p>
           </div>
