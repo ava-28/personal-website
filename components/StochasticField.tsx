@@ -33,7 +33,7 @@ export function StochasticField() {
       <svg
         viewBox="0 0 400 240"
         preserveAspectRatio="none"
-        className="absolute -right-10 top-6 h-[280px] w-[560px] opacity-[0.35] dark:opacity-[0.22] sm:h-[360px] sm:w-[720px]"
+        className="absolute -right-24 top-6 h-[280px] w-[440px] opacity-[0.35] dark:opacity-[0.22] sm:-right-16 sm:h-[360px] sm:w-[600px]"
       >
         {/* axes */}
         <line x1="0" y1="230" x2="400" y2="230" stroke="currentColor" strokeWidth="0.75" className="text-stone-400 dark:text-slate-500" />
