@@ -135,7 +135,7 @@ export default function RootLayout({
                 name: 'University of British Columbia',
               },
               sameAs: [
-                'https://github.com/avaahmadi',
+                'https://github.com/ava-28',
                 'https://www.linkedin.com/in/ava-ahmadi1228',
               ],
               knowsAbout: [
