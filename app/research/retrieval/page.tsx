@@ -86,6 +86,9 @@ export default function RetrievalPage() {
                   <span className="rounded-full bg-accent-100 px-3 py-1 text-xs font-bold text-accent-700 dark:bg-accent-900/40 dark:text-accent-300">
                     NSERC CREATE Scholarship
                   </span>
+                  <span className="rounded-full bg-stone-900 px-3 py-1 text-xs font-bold text-white dark:bg-white dark:text-stone-900">
+                    4th Place · ~20 PhD &amp; MSc Presenters
+                  </span>
                   <span className="text-xs text-stone-400 dark:text-slate-500">May 2026</span>
                 </div>
               </div>
@@ -188,6 +191,30 @@ export default function RetrievalPage() {
                     {tag}
                   </span>
                 ))}
+              </div>
+
+              {/* Presentation photos */}
+              <div className="mt-6 space-y-4">
+                <div className="overflow-hidden rounded-xl border border-stone-200 dark:border-slate-700">
+                  <img
+                    src="/presentation-podium.jpg"
+                    alt="Ava Ahmadi presenting Reasoning-Based Retrieval with ColBERT and SPLADE at Canadian AI 2026"
+                    className="w-full"
+                  />
+                  <p className="border-t border-stone-100 bg-stone-50 px-3 py-2 text-xs text-stone-500 dark:border-slate-700/60 dark:bg-slate-800/60 dark:text-slate-400">
+                    3-minute thesis talk — Canadian AI 2026
+                  </p>
+                </div>
+                <div className="overflow-hidden rounded-xl border border-stone-200 dark:border-slate-700">
+                  <img
+                    src="/presentation-poster.jpg"
+                    alt="Research poster: Reasoning-Based Retrieval with ColBERT and SPLADE, presented at Canadian AI 2026"
+                    className="w-full"
+                  />
+                  <p className="border-t border-stone-100 bg-stone-50 px-3 py-2 text-xs text-stone-500 dark:border-slate-700/60 dark:bg-slate-800/60 dark:text-slate-400">
+                    Poster session — Canadian AI 2026
+                  </p>
+                </div>
               </div>
             </motion.div>
           </section>
