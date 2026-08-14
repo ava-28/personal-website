@@ -6,6 +6,9 @@ import { motion } from 'framer-motion'
 import { MathBackground } from '@/components/MathBackground'
 import { StochasticField } from '@/components/StochasticField'
 import { Section } from '@/components/Section'
+import { ResearchSection } from '@/components/sections/ResearchSection'
+import { ProjectsSection } from '@/components/sections/ProjectsSection'
+import { LeadershipSection } from '@/components/sections/LeadershipSection'
 
 const TAGLINE = 'Mathematics × Machine Learning × Quantitative Finance'
 
@@ -38,7 +41,7 @@ export default function HomePage() {
       <MathBackground />
 
       {/* ── Hero band ── */}
-      <div className="relative overflow-hidden border-b border-stone-300 bg-paper dark:border-slate-800">
+      <div id="home" className="relative scroll-mt-16 overflow-hidden border-b border-stone-300 bg-paper dark:border-slate-800 xl:scroll-mt-0">
         <StochasticField />
         <div className="relative z-10 mx-auto max-w-3xl px-6 pb-14 pt-16 xl:pt-24">
 
@@ -211,6 +214,10 @@ export default function HomePage() {
         </Section>
 
       </div>
+
+      <ResearchSection />
+      <ProjectsSection />
+      <LeadershipSection />
     </div>
   )
 }

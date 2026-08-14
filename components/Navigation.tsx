@@ -7,10 +7,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
 const siteLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/research', label: 'Research' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/leadership', label: 'Leadership' },
+  { href: '/#home', label: 'Home', id: 'home' },
+  { href: '/#research', label: 'Research', id: 'research', pathPrefix: '/research' },
+  { href: '/#projects', label: 'Projects', id: 'projects' },
+  { href: '/#leadership', label: 'Leadership', id: 'leadership' },
 ]
 
 const connectLinks = [
@@ -26,11 +26,37 @@ function isExternal(href: string) {
 export function Navigation() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeId, setActiveId] = useState('home')
 
   // Close the mobile panel on route change
   useEffect(() => {
     setMobileOpen(false)
   }, [pathname])
+
+  // On the continuous homepage, highlight whichever section is currently
+  // scrolled into view instead of relying on the (now single) route.
+  useEffect(() => {
+    if (pathname !== '/') return
+    const ids = siteLinks.map((l) => l.id)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id)
+        })
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+    )
+    const els = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null)
+    els.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [pathname])
+
+  function isLinkActive(link: (typeof siteLinks)[number]) {
+    if (link.pathPrefix && pathname.startsWith(link.pathPrefix)) return true
+    return pathname === '/' && activeId === link.id
+  }
 
   return (
     <>
@@ -45,7 +71,7 @@ export function Navigation() {
         <div className="flex flex-col items-end gap-1.5">
           <span className="label-index text-stone-400 dark:text-slate-500">Index</span>
           {siteLinks.map((link) => {
-            const isActive = pathname === link.href
+            const isActive = isLinkActive(link)
             return (
               <Link
                 key={link.href}
@@ -121,11 +147,12 @@ export function Navigation() {
                 <p className="label-index mb-2 text-stone-400 dark:text-slate-500">Index</p>
                 <div className="mb-5 flex flex-col gap-3">
                   {siteLinks.map((link) => {
-                    const isActive = pathname === link.href
+                    const isActive = isLinkActive(link)
                     return (
                       <Link
                         key={link.href}
                         href={link.href}
+                        onClick={() => setMobileOpen(false)}
                         className={`text-base font-medium ${
                           isActive
                             ? 'text-accent-600 dark:text-accent-400'
