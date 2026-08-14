@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Open_Sans, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
@@ -154,6 +155,7 @@ export default function RootLayout({
         <Navigation />
         <main className="flex-1 pt-16 xl:pt-0">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
