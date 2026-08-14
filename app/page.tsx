@@ -45,45 +45,13 @@ export default function HomePage() {
         <StochasticField />
         <div className="relative z-10 mx-auto max-w-3xl px-6 pb-14 pt-16 xl:pt-24">
 
-          <motion.span
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="label-index text-accent-600 dark:text-accent-400"
-          >
-            Mathematics — University of British Columbia
-          </motion.span>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.08 }}
-            className="mt-3 font-display text-5xl font-bold uppercase leading-[0.92] tracking-tight text-stone-900 dark:text-white sm:text-6xl md:text-7xl"
-          >
-            Ava
-            <br />
-            Ahmadi
-          </motion.h1>
-
-          <div className="mt-7 flex flex-col-reverse gap-8 sm:flex-row sm:items-end sm:justify-between">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.85 }}
-              className="min-h-[1.75rem] max-w-md text-lg text-stone-600 dark:text-slate-400"
-            >
-              {typed}
-              {!typingDone && (
-                <span className="ml-0.5 inline-block h-[1.1em] w-[2px] translate-y-[2px] animate-pulse rounded-sm bg-accent-600 align-middle dark:bg-accent-400" />
-              )}
-            </motion.p>
-
+          <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8">
             {/* Portrait — framed like a figure in a paper, not a soft avatar */}
             <motion.div
               initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="shrink-0 self-start sm:self-end"
+              className="shrink-0"
             >
               <div className="border-2 border-stone-900 bg-white p-1 dark:border-white dark:bg-slate-900">
                 <Image
@@ -92,11 +60,45 @@ export default function HomePage() {
                   width={400}
                   height={400}
                   priority
-                  className="h-32 w-32 object-cover sm:h-36 sm:w-36 md:h-40 md:w-40"
+                  className="h-28 w-28 object-cover sm:h-36 sm:w-36 md:h-44 md:w-44"
                 />
               </div>
             </motion.div>
+
+            <div>
+              <motion.span
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="label-index text-accent-600 dark:text-accent-400"
+              >
+                Mathematics — University of British Columbia
+              </motion.span>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.08 }}
+                className="mt-3 font-display text-5xl font-bold uppercase leading-[0.92] tracking-tight text-stone-900 dark:text-white sm:text-6xl md:text-7xl"
+              >
+                Ava
+                <br />
+                Ahmadi
+              </motion.h1>
+            </div>
           </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.85 }}
+            className="mt-7 min-h-[1.75rem] max-w-md text-lg text-stone-600 dark:text-slate-400"
+          >
+            {typed}
+            {!typingDone && (
+              <span className="ml-0.5 inline-block h-[1.1em] w-[2px] translate-y-[2px] animate-pulse rounded-sm bg-accent-600 align-middle dark:bg-accent-400" />
+            )}
+          </motion.p>
 
           {/* Social icon links */}
           <motion.div
