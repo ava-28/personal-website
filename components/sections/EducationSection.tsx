@@ -20,7 +20,7 @@ export function EducationSection() {
             NODET (National Organization for Development of Exceptional Talents)
           </h3>
           <p className="text-[15px] text-stone-600 dark:text-slate-300">
-            Competitive physics background: Gold Medal, IBSKC; Silver Medal, National Physics Olympiad.
+            Competitive physics background: Gold Medal, IBSKC.
           </p>
         </article>
       </div>

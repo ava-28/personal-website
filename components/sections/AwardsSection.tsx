@@ -1,4 +1,4 @@
-const awards = ['Gold Medal, IBSKC', 'Silver Medal, National Physics Olympiad']
+const awards = ['Gold Medal, IBSKC']
 
 export function AwardsSection() {
   return (
