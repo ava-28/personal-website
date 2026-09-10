@@ -4,6 +4,7 @@ const nextConfig = {
   async rewrites() {
     return [
       { source: '/neurospace', destination: '/neurospace/index.html' },
+      { source: '/neurospace/', destination: '/neurospace/index.html' },
     ]
   },
 }
