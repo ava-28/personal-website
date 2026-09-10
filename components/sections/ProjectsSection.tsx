@@ -165,7 +165,38 @@ function HydroGenVisual() {
   )
 }
 
-type CustomVisualKind = 'statarb' | 'attention' | 'trading' | 'montecarlo-gen' | 'gridworld-gen' | 'hydro-gen'
+function MriVisual() {
+  return (
+    <svg viewBox="0 0 600 280" className="h-full w-full">
+      <rect x="0" y="0" width="600" height="280" fill="#f7f3e7" />
+      {/* axial slice */}
+      <g transform="translate(90,40)">
+        <ellipse cx="90" cy="100" rx="88" ry="100" fill="#ecf0f9" stroke="#8991a4" strokeWidth="1.5" />
+        <ellipse cx="90" cy="100" rx="66" ry="78" fill="none" stroke="#a4abbb" strokeWidth="1" />
+        <ellipse cx="70" cy="80" rx="20" ry="26" fill="#111b30" opacity="0.18" />
+        <ellipse cx="112" cy="86" rx="18" ry="24" fill="#111b30" opacity="0.14" />
+        <path d="M50 130 C70 150,110 150,130 130" stroke="#a4894f" strokeWidth="2" fill="none" opacity="0.7" />
+        <line x1="90" y1="0" x2="90" y2="200" stroke="#a4894f" strokeWidth="1" strokeDasharray="3 4" opacity="0.6" />
+        <line x1="2" y1="100" x2="178" y2="100" stroke="#a4894f" strokeWidth="1" strokeDasharray="3 4" opacity="0.6" />
+      </g>
+      {/* sagittal / coronal thumbnails */}
+      <g transform="translate(330,40)">
+        <rect x="0" y="0" width="120" height="86" rx="4" fill="#ecf0f9" stroke="#8991a4" strokeWidth="1" />
+        <path d="M14 70 C20 30,40 14,60 16 C90 18,106 40,108 70 Z" fill="#111b30" opacity="0.12" />
+        <text x="8" y="14" fontSize="10" fill="#57617a">SAG</text>
+      </g>
+      <g transform="translate(330,138)">
+        <rect x="0" y="0" width="120" height="86" rx="4" fill="#ecf0f9" stroke="#8991a4" strokeWidth="1" />
+        <path d="M60 10 C90 12,108 40,100 70 C92 86,28 86,20 70 C12 40,30 12,60 10 Z" fill="#111b30" opacity="0.12" />
+        <text x="8" y="14" fontSize="10" fill="#57617a">COR</text>
+      </g>
+      <text x="330" y="248" fill="#111b30" fontSize="17" fontFamily="Georgia, serif">Neurospace</text>
+      <text x="330" y="268" fill="#57617a" fontSize="13">Client-side MRI/CT explorer · WebGL</text>
+    </svg>
+  )
+}
+
+type CustomVisualKind = 'statarb' | 'attention' | 'trading' | 'montecarlo-gen' | 'gridworld-gen' | 'hydro-gen' | 'mri-gen'
 
 function GeneratedVisual({ kind }: { kind: CustomVisualKind }) {
   return (
@@ -176,6 +207,7 @@ function GeneratedVisual({ kind }: { kind: CustomVisualKind }) {
       {kind === 'montecarlo-gen' && <MonteCarloGenVisual />}
       {kind === 'gridworld-gen' && <GridworldGenVisual />}
       {kind === 'hydro-gen' && <HydroGenVisual />}
+      {kind === 'mri-gen' && <MriVisual />}
     </div>
   )
 }
@@ -193,10 +225,21 @@ interface Project {
   images?: string[]
   description: string
   repo?: string
+  live?: string
   customVisual?: CustomVisualKind
 }
 
 const projects: Project[] = [
+  {
+    title: 'Neurospace — Personal MRI Explorer',
+    subtitle: 'JavaScript · VTK.js · ITK-Wasm',
+    visual: 'montecarlo',
+    customVisual: 'mri-gen',
+    description:
+      'A browser-based DICOM/NIfTI viewer for personal MRI and CT exploration: 3D surface rendering alongside synchronized axial, coronal, and sagittal slice views. Everything runs client-side — files are parsed and rendered locally in WebGL, nothing is uploaded to a server.',
+    repo: 'https://github.com/ava-28/neurospace-explorer',
+    live: '/neurospace',
+  },
   {
     title: 'News-Driven Reinforcement Learning Trading Agent',
     subtitle: 'Python · PyTorch · Finnhub API · yfinance',
@@ -313,22 +356,37 @@ export function ProjectsSection() {
                 <p className="text-sm leading-relaxed text-stone-600 dark:text-slate-300">
                   {project.description}
                 </p>
-                {project.repo && (
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-700 transition-colors hover:text-accent-600 dark:text-slate-300 dark:hover:text-accent-400"
-                  >
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-                    </svg>
-                    View on GitHub
-                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3">
-                      <path d="M3 3h6M9 3v6M9 3L3 9" />
-                    </svg>
-                  </a>
-                )}
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-700 transition-colors hover:text-accent-600 dark:text-slate-300 dark:hover:text-accent-400"
+                    >
+                      Open Explorer
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3">
+                        <path d="M3 3h6M9 3v6M9 3L3 9" />
+                      </svg>
+                    </a>
+                  )}
+                  {project.repo && (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-stone-700 transition-colors hover:text-accent-600 dark:text-slate-300 dark:hover:text-accent-400"
+                    >
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                      </svg>
+                      View on GitHub
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3">
+                        <path d="M3 3h6M9 3v6M9 3L3 9" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
               </div>
             </Card>
           ))}
