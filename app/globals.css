@@ -12,21 +12,18 @@
 }
 
 @layer utilities {
-  /* Faint graph-paper texture used behind the hero and section dividers */
-  .bg-paper {
-    background-image:
-      linear-gradient(to right, rgb(0 0 0 / 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(0 0 0 / 0.04) 1px, transparent 1px);
-    background-size: 28px 28px;
-  }
-  .dark .bg-paper {
-    background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
-  }
-
-  /* Small-caps index label, used by the nav and section eyebrows */
+  /* Small-caps index label, used by section eyebrows */
   .label-index {
     @apply font-mono text-[11px] font-medium uppercase tracking-[0.18em];
+  }
+
+  /* A CV-style section: bordered top divider, generous top padding */
+  .section-block {
+    @apply scroll-mt-20 border-t border-stone-300 pt-14 dark:border-slate-800;
+  }
+
+  /* A single row in an entry list (education / research / leadership) */
+  .entry-row {
+    @apply border-b border-stone-200 pb-6 last:border-b-0 last:pb-0 dark:border-slate-800;
   }
 }
